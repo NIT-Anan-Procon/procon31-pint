@@ -1,1 +1,1 @@
-# procon31_pint
+# procon31_P!ntリポジトリ
