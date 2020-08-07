@@ -1,3 +1,3 @@
-# procon31 P!nt
+# procon31 P!nt Pre-Dev Brunch
 
-* 開発前段階のフォルダ: PreDevelopment
+* 開発の前段階のフォルダを置いておくブランチ
