@@ -1,3 +1,3 @@
 # procon31 P!nt
 
-* 開発の前段階用のフォルダ: PreDevelopment
+* 開発前段階のフォルダ: PreDevelopment
