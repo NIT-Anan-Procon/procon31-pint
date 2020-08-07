@@ -51,7 +51,7 @@ class YoutubePlayer extends React.Component {
  
     return (
       <div>
-        <YouTube videoId="M7lc1UVf-VE" opts={opts} onReady={(event) => this._onReady(event)} />
+        <YouTube videoId={this.props.videoId} opts={opts} onReady={(event) => this._onReady(event)} />
         <Controller
           getVideo={ () => this.state.videoEl }
         />

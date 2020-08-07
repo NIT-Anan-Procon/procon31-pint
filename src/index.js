@@ -3,6 +3,6 @@ import ReactDOM from 'react-dom';
 import YoutubePlayer from './YoutubePlayer';
 
 ReactDOM.render(
-  <YoutubePlayer />,
+  <YoutubePlayer videoId={"M7lc1UVf-VE"} />,
   document.getElementById('root')
 );
