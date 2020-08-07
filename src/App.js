@@ -1,13 +1,14 @@
 import React from 'react';
+import './YoutubePlayer.css';
 
-function App() {
-  return (
-    <div className="Greeting">
-      <p>
-        hello react
-      </p>
+class YoutubePlayer extends React.Component  {
+  render() {
+    <div className="YoutubePlayer">
+      <div className="Player">
+        <script src="https://www.youtube.com/iframe_api"></script>
+      </div>
     </div>
-  );
+  }
 }
 
-export default App;
+export default YoutubePlayer;
