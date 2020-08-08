@@ -1,5 +1,11 @@
 # procon31_pint
 
+## install
+
+`$ npm install`
+
+## run
+
 ### `yarn start`
 
 Runs the app in the development mode.<br />
