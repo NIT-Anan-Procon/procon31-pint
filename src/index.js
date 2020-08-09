@@ -4,10 +4,29 @@ import './index.css';
 
 // 正方形のマス目を1つの<button>としてレンダー
 class Square extends React.Component {
+	// Squareコンポーネントに自分がクリックされたことを覚えさせる。
+	// コンポーネントが何かを「覚えるためには」state を使う。
+	
+	// React コンポーネントはコンストラクタで this.state を設定することで、状態を持つことができるようになります。
+	// this.state はそれが定義されているコンポーネント内でプライベートと見なすべきものです。
+	constructor(props) {
+		// JavaScript のクラスでは、サブクラスのコンストラクタを定義する際は常に super を呼ぶ必要があります。
+		// constructor を持つ React のクラスコンポーネントでは、すべてコンストラクタを super(props) の呼び出しから始めるべきです。
+		super(props);
+		this.state = {
+			value: null,
+		};
+	}
 	render() {
 		return (
-			<button className="square" onClick={function () { alert('click');}}>
-				{this.props.value}
+			// () => はJavaScriptのアロー関数 function() {} と同じ
+			// クリックされたときに state の現在値を表示する
+			// Square の render メソッド内に書かれた onClick ハンドラ内で this.setState を呼び出すことで、React に <button> がクリックされたら常に再レンダーするよう伝えることができます。
+			<button
+				className="square"
+				onClick={() => this.setState({ value: 'X' })}
+			>
+				{this.state.value}
 			</button>
 		);
 	}
