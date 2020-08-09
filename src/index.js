@@ -9,14 +9,17 @@ class Square extends React.Component {
 	
 	// React コンポーネントはコンストラクタで this.state を設定することで、状態を持つことができるようになります。
 	// this.state はそれが定義されているコンポーネント内でプライベートと見なすべきものです。
-	constructor(props) {
-		// JavaScript のクラスでは、サブクラスのコンストラクタを定義する際は常に super を呼ぶ必要があります。
-		// constructor を持つ React のクラスコンポーネントでは、すべてコンストラクタを super(props) の呼び出しから始めるべきです。
-		super(props);
-		this.state = {
-			value: null,
-		};
-	}
+
+	// state のリフトアップの部分で削除
+	// constructor(props) {
+	// 	// JavaScript のクラスでは、サブクラスのコンストラクタを定義する際は常に super を呼ぶ必要があります。
+	// 	// constructor を持つ React のクラスコンポーネントでは、すべてコンストラクタを super(props) の呼び出しから始めるべきです。
+	// 	super(props);
+	// 	this.state = {
+	// 		value: null,
+	// 	};
+	// }
+
 	render() {
 		return (
 			// () => はJavaScriptのアロー関数 function() {} と同じ
@@ -24,9 +27,9 @@ class Square extends React.Component {
 			// Square の render メソッド内に書かれた onClick ハンドラ内で this.setState を呼び出すことで、React に <button> がクリックされたら常に再レンダーするよう伝えることができます。
 			<button
 				className="square"
-				onClick={() => this.setState({ value: 'X' })}
+				onClick={() => this.props.onClick()}
 			>
-				{this.state.value}
+				{this.props.value}
 			</button>
 		);
 	}
@@ -34,9 +37,29 @@ class Square extends React.Component {
 
 // Boardは9このマス目をレンダー
 class Board extends React.Component {
-	// BoardのrenderSquareメソッド内で、props(properties)としてvalueをSquareコンポーネントに渡す
+	// 初期 state に 9 個の null が 9 個のマス目に対応する 9 個の null 値をセットします。
+	constructor(props) {
+		super(props);
+		this.state = {
+			squares: Array(9).fill(null),
+		};
+	}
+
+	handleClick(i) {
+		const squares = this.state.squares.slice();
+		squares[i] = 'X';
+		this.setState({ squares: squares });
+	}
+
+	// BoardのrenderSquareメソッド内で、props(properties) としてvalueをSquareコンポーネントに渡す
+	// JavaScript が return の後にセミコロンを挿入するのを防ぐため、カッコを付け加えています。
 	renderSquare(i) {
-		return <Square value={i} />;
+		return (
+			<Square
+				value={this.state.squares[i]}
+				onClick={() => this.handleClick(i)}
+			/>
+		);
 	}
 
 	render() {
