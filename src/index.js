@@ -1,16 +1,23 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+
+// 正方形のマス目を1つの<button>としてレンダー
 class Square extends React.Component {
 	render() {
 		return (
-			<button className="square">
-				{/* TODO */}
+			<button className="square" onClick={function () { alert('click');}}>
+				{this.props.value}
 			</button>
 		);
 	}
 }
 
+// Boardは9このマス目をレンダー
 class Board extends React.Component {
+	// BoardのrenderSquareメソッド内で、props(properties)としてvalueをSquareコンポーネントに渡す
 	renderSquare(i) {
-		return <Square />;
+		return <Square value={i} />;
 	}
 
 	render() {
@@ -39,6 +46,7 @@ class Board extends React.Component {
 	}
 }
 
+// 盤面とブレースホルダーを描画
 class Game extends React.Component {
 	render() {
 		return (
