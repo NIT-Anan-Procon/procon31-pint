@@ -52,13 +52,17 @@ class Board extends React.Component {
 		super(props);
 		this.state = {
 			squares: Array(9).fill(null),
+			xIsNext: true,
 		};
 	}
 
 	handleClick(i) {
 		const squares = this.state.squares.slice();
-		squares[i] = 'X';
-		this.setState({ squares: squares });
+		squares[i] = this.state.xIsNext ? 'X' : 'O';
+		this.setState({
+			squares: squares,
+			xIsNext: !this.state.xIsNext,
+		});
 	}
 
 	// BoardのrenderSquareメソッド内で、props(properties) としてvalueをSquareコンポーネントに渡す
@@ -73,7 +77,8 @@ class Board extends React.Component {
 	}
 
 	render() {
-		const status = 'Next player: X';
+		// xIsNext が true なら X を代入、false なら O を代入する。
+		const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
 
 		return (
 			<div>
