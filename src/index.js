@@ -3,36 +3,46 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 // 正方形のマス目を1つの<button>としてレンダー
-class Square extends React.Component {
-	// Squareコンポーネントに自分がクリックされたことを覚えさせる。
-	// コンポーネントが何かを「覚えるためには」state を使う。
+
+// 関数コンポーネント化したため削除
+// class Square extends React.Component {
+// 	// Squareコンポーネントに自分がクリックされたことを覚えさせる。
+// 	// コンポーネントが何かを「覚えるためには」state を使う。
 	
-	// React コンポーネントはコンストラクタで this.state を設定することで、状態を持つことができるようになります。
-	// this.state はそれが定義されているコンポーネント内でプライベートと見なすべきものです。
+// 	// React コンポーネントはコンストラクタで this.state を設定することで、状態を持つことができるようになります。
+// 	// this.state はそれが定義されているコンポーネント内でプライベートと見なすべきものです。
 
-	// state のリフトアップの部分で削除
-	// constructor(props) {
-	// 	// JavaScript のクラスでは、サブクラスのコンストラクタを定義する際は常に super を呼ぶ必要があります。
-	// 	// constructor を持つ React のクラスコンポーネントでは、すべてコンストラクタを super(props) の呼び出しから始めるべきです。
-	// 	super(props);
-	// 	this.state = {
-	// 		value: null,
-	// 	};
-	// }
+// 	// state のリフトアップの部分で削除
+// 	// constructor(props) {
+// 	// 	// JavaScript のクラスでは、サブクラスのコンストラクタを定義する際は常に super を呼ぶ必要があります。
+// 	// 	// constructor を持つ React のクラスコンポーネントでは、すべてコンストラクタを super(props) の呼び出しから始めるべきです。
+// 	// 	super(props);
+// 	// 	this.state = {
+// 	// 		value: null,
+// 	// 	};
+// 	// }
 
-	render() {
-		return (
-			// () => はJavaScriptのアロー関数 function() {} と同じ
-			// クリックされたときに state の現在値を表示する
-			// Square の render メソッド内に書かれた onClick ハンドラ内で this.setState を呼び出すことで、React に <button> がクリックされたら常に再レンダーするよう伝えることができます。
-			<button
-				className="square"
-				onClick={() => this.props.onClick()}
-			>
-				{this.props.value}
-			</button>
-		);
-	}
+// 	render() {
+// 		return (
+// 			// () => はJavaScriptのアロー関数 function() {} と同じ
+// 			// クリックされたときに state の現在値を表示する
+// 			// Square の render メソッド内に書かれた onClick ハンドラ内で this.setState を呼び出すことで、React に <button> がクリックされたら常に再レンダーするよう伝えることができます。
+// 			<button
+// 				className="square"
+// 				onClick={() => this.props.onClick()}
+// 			>
+// 				{this.props.value}
+// 			</button>
+// 		);
+// 	}
+// }
+
+function Square(props) {
+	return (
+		<button className="square" onClick={props.onClick}>
+			{props.value}
+		</button>
+	);
 }
 
 // Boardは9このマス目をレンダー
