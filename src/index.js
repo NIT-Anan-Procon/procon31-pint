@@ -48,13 +48,14 @@ function Square(props) {
 // Boardは9このマス目をレンダー
 class Board extends React.Component {
 	// 初期 state に 9 個の null が 9 個のマス目に対応する 9 個の null 値をセットします。
-	constructor(props) {
-		super(props);
-		this.state = {
-			squares: Array(9).fill(null),
-			xIsNext: true,
-		};
-	}
+	// タイムトラベル機能の追加で削除
+	// constructor(props) {
+	// 	super(props);
+	// 	this.state = {
+	// 		squares: Array(9).fill(null),
+	// 		xIsNext: true,
+	// 	};
+	// }
 
 	handleClick(i) {
 		const squares = this.state.squares.slice();
@@ -73,8 +74,8 @@ class Board extends React.Component {
 	renderSquare(i) {
 		return (
 			<Square
-				value={this.state.squares[i]}
-				onClick={() => this.handleClick(i)}
+				value={this.props.squares[i]}
+				onClick={() => this.props.handleClick(i)}
 			/>
 		);
 	}
@@ -116,6 +117,15 @@ class Board extends React.Component {
 
 // 盤面とブレースホルダーを描画
 class Game extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			history: [{
+				squares: Array(9).fill(null),
+			}],
+			xIsNext: true,
+		};
+	}
 	render() {
 		return (
 			<div className="game">
