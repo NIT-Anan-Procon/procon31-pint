@@ -2,24 +2,24 @@ import React from 'react';
 import YouTube from 'react-youtube';
 import './YoutubePlayer.css';
 
-function Controller(props) {
-  return (
-    <div>
-      <button
-        className="playButton"
-        onClick={ () => props.getVideo().target.playVideo() }
-      >
-          再生
-      </button>
-      <button
-        className="pauseButton"
-        onClick={ () => props.getVideo().target.pauseVideo() }
-      >
-        停止
-      </button>
-    </div>
-  );
-}
+// function Controller(props) {
+//   return (
+//     <div>
+//       <button
+//         className="playButton"
+//         onClick={ () => props.getVideo().target.playVideo() }
+//       >
+//           再生
+//       </button>
+//       <button
+//         className="pauseButton"
+//         onClick={ () => props.getVideo().target.pauseVideo() }
+//       >
+//         停止
+//       </button>
+//     </div>
+//   );
+// }
 
 function PinController(props) {
   let alertMessage = (label) => {
@@ -52,9 +52,10 @@ class YoutubePlayer extends React.Component {
     return (
       <div>
         <YouTube videoId={this.props.videoId} opts={opts} onReady={(event) => this._onReady(event)} />
-        <Controller
+        {/* <Controller
           getVideo={ () => this.state.videoEl }
-        />
+        /> */}
+        
         <PinController
           getVideoTime={ () => Math.round(this.state.videoEl.target.getCurrentTime()) }
         />
