@@ -5,10 +5,10 @@ import InputContainer from './InputContainer';
 
 function CommentList() {
   return (
-    <div>
+    <>
       <CommentContainer />
       <InputContainer onClick={(text)=>console.log(text)}/>
-    </div>
+    </>
   );
 }
 

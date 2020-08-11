@@ -1,12 +1,22 @@
 import React from 'react';
 
-function CommentContainer() {
+import Comment from './Comment'
+
+class CommentContainer extends React.Component{
+  constructor(props){
+    super(props);
+    this.state={
+      
+    };
+  }
+
   return (
-    <div>
+    <>
       <p>
-        CommentContainer
+        <Comment comment="ReactTest" />
+        <Comment comment="commentList" />
       </p>
-    </div>
+    </>
   );
 }
 
