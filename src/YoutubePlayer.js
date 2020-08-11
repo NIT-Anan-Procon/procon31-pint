@@ -1,42 +1,10 @@
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 import YouTube from 'react-youtube';
 
+import Controller from "./Controller";
 import PinController from "./PinController";
 
 import './YoutubePlayer.css';
-
-// function Controller(props) {
-//   return (
-//     <div>
-//       <button
-//         className="playButton"
-//         onClick={ () => props.getVideo().target.playVideo() }
-//       >
-//           再生
-//       </button>
-//       <button
-//         className="pauseButton"
-//         onClick={ () => props.getVideo().target.pauseVideo() }
-//       >
-//         停止
-//       </button>
-//     </div>
-//   );
-// }
-
-// function PinController(props) {
-//   let alertMessage = (label) => {
-//     alert(`${label}\n現在時刻 : ${props.getVideoTime()}秒`);
-//   }
-
-//   return (
-//     <div className="pin">
-//       <div className="circle question" onClick={() => alertMessage("question")}></div>
-//       <div className="circle understanding" onClick={() => alertMessage("understanding")}></div>
-//       <div className="circle exclamation" onClick={() => alertMessage("exclamation")}></div>
-//     </div>
-//   )
-// }
 
 class YoutubePlayer extends React.Component {
   constructor(props) {
@@ -44,6 +12,7 @@ class YoutubePlayer extends React.Component {
     this.state = {
       videoEl: null
     }
+    this.controller = React.createRef();
   }
 
   render() {
@@ -55,11 +24,13 @@ class YoutubePlayer extends React.Component {
     return (
       <div>
         <YouTube videoId={this.props.videoId} opts={opts} onReady={(event) => this._onReady(event)} />
-        {/* <Controller
-          getVideo={ () => this.state.videoEl }
-        /> */}
+        <Controller
+          ref={this.controller}
+          getVideo={() => this.state.videoEl}
+        />
         
         <PinController
+          onPress={this.controller.add}
           getVideoTime={ () => Math.round(this.state.videoEl.target.getCurrentTime()) }
         />
       </div>
