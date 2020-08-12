@@ -4,6 +4,7 @@ class Pin extends React.Component{
   constructor(props) {
     super(props);
   }
+
   colorOfType(type) {
     switch (type) {
       case 0:
@@ -16,9 +17,18 @@ class Pin extends React.Component{
         throw new Error("wrong pin type");
     }
   }
+
+  seekPinTime(time) {
+    this.props.getVideo().target.seekTo(time)
+  }
+
   render() {
     return (
-      <div style={{ background: this.colorOfType(this.props.type), width: `${this.props.time}px`, height: "10px"}}></div>
+      <div
+        onClick={() => this.seekPinTime(this.props.time)}
+        style={{ background: this.colorOfType(this.props.type), width: `${this.props.time}px`, height: "20px", cursor: "pointer" }}
+      >
+      </div>
     )
   }
 }
@@ -52,7 +62,13 @@ class Controller extends React.Component {
         </button>
         <div>
           {this.state.pins.map((pin) => {
-            return <Pin time={pin.time} type={pin.type} />
+            return (
+              <Pin
+                time={pin.time}
+                type={pin.type}
+                getVideo={() => this.props.getVideo()}
+              />
+            )
           })}
         </div>
       </div>

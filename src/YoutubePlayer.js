@@ -12,7 +12,6 @@ class YoutubePlayer extends React.Component {
     this.state = {
       videoEl: null
     }
-    this.controller = React.createRef();
   }
 
   render() {
@@ -25,12 +24,10 @@ class YoutubePlayer extends React.Component {
       <div>
         <YouTube videoId={this.props.videoId} opts={opts} onReady={(event) => this._onReady(event)} />
         <Controller
-          ref={this.controller}
           getVideo={() => this.state.videoEl}
         />
         
         <PinController
-          onPress={this.controller.add}
           getVideoTime={ () => Math.round(this.state.videoEl.target.getCurrentTime()) }
         />
       </div>
