@@ -7,7 +7,7 @@ class Controller extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{marginTop: "30px"}}>
         <button
           className="playButton"
           onClick={ () => this.props.getVideo().target.playVideo() }

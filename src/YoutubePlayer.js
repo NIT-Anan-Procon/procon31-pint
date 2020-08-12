@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React from 'react';
 import YouTube from 'react-youtube';
 
 import Pin from "./Pin"
@@ -24,7 +24,7 @@ class YoutubePlayer extends React.Component {
   render() {
     const opts = {
       height: '390',
-      width: '640'
+      width: '640',
     };
 
     return (
@@ -37,6 +37,7 @@ class YoutubePlayer extends React.Component {
                 time={pin.time}
                 type={pin.type}
                 getVideo={() => this.state.videoEl}
+                duration={() => this.state.videoEl.getDuration()}
               />
             )
           })}
@@ -54,7 +55,6 @@ class YoutubePlayer extends React.Component {
 
   _onReady(event) {
     this.setState({videoEl: event});
-    event.target.pauseVideo();
   }
 }
 
