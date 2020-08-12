@@ -17,7 +17,7 @@ class InputContainer extends React.Component  {
     return (
       <>
         <input type="text" value={this.state.value} onChange={this.handleChange}/>
-        <button onClick={()=>this.props.onClick(this.state.value)}>send</button>
+        <button onClick={()=>this.props.onChange(this.state.value)}>send</button>
       </>
     );
   }
