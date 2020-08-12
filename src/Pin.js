@@ -23,7 +23,7 @@ class Pin extends React.Component{
 	}
 
 	marginOfTime(currentTime) {
-		return Math.round((currentTime * 390) / this.setState.duration);
+		return Math.round((currentTime * 640) / 1343);
 	}
 
 	render() {
