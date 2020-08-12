@@ -18,6 +18,7 @@ class YoutubePlayer extends React.Component {
 
   addPin(time, type) {
     this.state.pins.push({ time: time, type: type });
+    this.setState({ pins: this.state.pins });
   }
 
   render() {
@@ -29,20 +30,20 @@ class YoutubePlayer extends React.Component {
     return (
       <div>
         <YouTube videoId={this.props.videoId} opts={opts} onReady={(event) => this._onReady(event)} />
-        <Controller
-          getVideo={() => this.state.videoEl}
-        />
-        <div>
+        <div className="pin">
           {this.state.pins.map((pin) => {
             return (
               <Pin
                 time={pin.time}
                 type={pin.type}
-                getVideo={() => this.props.getVideo()}
+                getVideo={() => this.state.videoEl}
               />
             )
           })}
         </div>
+        <Controller
+          getVideo={() => this.state.videoEl}
+        />
         <PinController
           getVideoTime={() => Math.round(this.state.videoEl.target.getCurrentTime())}
           addPin={(time, type) => this.addPin(time, type)}
