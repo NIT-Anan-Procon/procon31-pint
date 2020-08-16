@@ -7,7 +7,7 @@ class CommentList extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      message:""
+      message:"null"
     };
     this.SetMessage=this.SetMessage.bind(this);
   }
@@ -19,7 +19,7 @@ class CommentList extends React.Component{
   render(){
     return (
       <>
-        <CommentContainer comment={this.state.message} />
+        <CommentContainer comment="Second" />
         <InputContainer onChange={
           (text)=>{
             this.SetMessage(text);

@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import Comment from './Comment'
+//import Comment from './Comment'
 
 class CommentContainer extends React.Component{
   constructor(props){
@@ -9,17 +9,16 @@ class CommentContainer extends React.Component{
     this.state={
       message:""
     };
-    this.messageChange=this.messageChange.bind(this);
+    this.SetMessage=this.SetMessage.bind(this);
   }
 
-  messageChange(){
+  SetMessage(){
     this.setState({message:this.props.message});
   }
+
   render(){
   return (
-    <>
-      <Comment comment={this.state.message}/>
-    </>
+      <div>{this.state.message}</div>
   );
   }
 }

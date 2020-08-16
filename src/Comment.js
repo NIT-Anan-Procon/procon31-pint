@@ -1,7 +1,18 @@
 import React from 'react';
 
-const Comment= props =>{
-    return <p>{props.comment}</p>
+class Comment extends React.Component{
+  constructor(props){
+    super(props);
+    this.state={
+      message:""
+    }
+  }
+
+  render(){
+    return(
+        <p  {this.state.message}>
+    );
+  }
 }
 
 export default Comment;
