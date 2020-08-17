@@ -18,7 +18,10 @@ class CommentContainer extends React.Component{
 
   render(){
   return (
-      <div>{this.state.message}</div>
+      <div>
+      {this.state.message}
+      {console.log("CC:"+this.state.message)}
+      </div>
   );
   }
 }
