@@ -19,11 +19,10 @@ class CommentList extends React.Component{
   render(){
     return (
       <>
-        <CommentContainer comment="Second" />
+        <CommentContainer comment={this.state.message} />
         <InputContainer onChange={
           (text)=>{
             this.SetMessage(text);
-            console.log(this.state.message);
           }}/>
       </>
     );
