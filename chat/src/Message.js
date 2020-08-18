@@ -1,5 +1,7 @@
 import React from "react";
 
+import './styles.css';
+
 class Message extends React.Component {
 	constructor(props) {
 		super(props);
@@ -7,7 +9,7 @@ class Message extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className="message">
 				<div id="message">
 					本文: {this.props.message}
 				</div>

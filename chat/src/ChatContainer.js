@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 
 import Message from "./Message";
+import InputContainer from "./InputContainer";
 
 import './styles.css';
 
@@ -19,11 +20,14 @@ class ChatContainer extends React.Component {
 		axios
 			.post("http://192.168.0.30/API/ChatGet.php", params)
 			.then(res => {
-				this.setState(
-					this.state.messages.concat(res.data.MessageArray)
-				)
-				console.log(res.data.MessageArray)
-			}
+					// this.state.messages = this.state.messages.concat(res.data.MessageArray)
+					// this.setState({ messages: this.state.messages })
+				this.state.messages.clear();
+				for (let key in res.data.MessageArray) {
+					this.state.messages.push(res.data.MessageArray[key]);
+				}
+				this.setState({ messages: this.state.messages });
+				}
 			)
 			.catch(err => alert(err));
 		console.log(this.state.messages);
@@ -41,7 +45,7 @@ class ChatContainer extends React.Component {
 						}
 					}
 				>
-					<div className="message">
+					<div>
 						{this.state.messages.map((message, index) => {
 							return (
 								<Message 
@@ -54,6 +58,7 @@ class ChatContainer extends React.Component {
 					</div>
 				</div>
 				<button onClick={this.syncMessage}>メッセージ取得</button>
+				<InputContainer />
 			</div>
 		);
 	}
