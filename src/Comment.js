@@ -1,18 +1,14 @@
 import React from 'react';
 
-class Comment extends React.Component{
-  constructor(props){
-    super(props);
-    this.state={
-      message:""
-    }
-  }
+function Comment(props){
+  const [message, setMessage]=useState("");
 
-  render(){
-    return(
-        <p  {this.state.message}>
-    );
-  }
+  return{
+    <>
+      {setMessage(message:this.props.message);}
+      <div>{message}</div>
+    </>
+  };
 }
 
 export default Comment;
