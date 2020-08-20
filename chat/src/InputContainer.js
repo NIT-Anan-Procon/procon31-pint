@@ -11,13 +11,13 @@ class InputContainer extends React.Component {
 	}
 
 	handleChange(event) {
-		this.setState({value: event.target.value});
+		this.setState({ value: event.target.value });
 	}
 
-	sendMessage(message) {
+	sendMessage() {
 		const params = new URLSearchParams();
 		params.append('PinID', 1);
-		params.append('Message', message );
+		params.append('Message', this.state.value );
 		axios
 			.post("http://192.168.0.30/API/ChatSend.php", params)
 			.then(res => console.log(res))
@@ -28,7 +28,7 @@ class InputContainer extends React.Component {
 		return (
 			<div>
 				<input type="text" value={this.state.value} onChange={this.handleChange} ></input>
-				<button onClick={this.sendMessage(this.state.value)}>送信</button>
+				<button onClick={this.sendMessage()} >送信</button>
 			</div>
 		);
 	}

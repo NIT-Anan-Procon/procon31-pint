@@ -1,3 +1,15 @@
+div {
+	margin-bottom: 5px;
+}
+
+.chatContainer {
+	height: 700px;
+	width: 400px;
+	border: 1px solid black;
+	border-radius: 5px;
+	overflow: auto;
+}
+
 .message {
 	margin: 3px;
 	border: 1px solid black;

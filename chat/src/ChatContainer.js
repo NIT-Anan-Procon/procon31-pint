@@ -10,41 +10,30 @@ class ChatContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			messages: [{msgTime: "2020-08-14 23:25:20", msg: "こんばんはaaaaaaaaaaaaaaa", userName: "Miyamoto"}]
+			messages: []
 		}
 	}
 
 	syncMessage = () =>{
 		const params = new URLSearchParams();
 		params.append('PinID', 1);
+		this.state.messages = [];
 		axios
-			.post("http://192.168.0.30/API/ChatGet.php", params)
-			.then(res => {
-					// this.state.messages = this.state.messages.concat(res.data.MessageArray)
-					// this.setState({ messages: this.state.messages })
-				this.state.messages.clear();
-				for (let key in res.data.MessageArray) {
-					this.state.messages.push(res.data.MessageArray[key]);
-				}
-				this.setState({ messages: this.state.messages });
-				}
-			)
-			.catch(err => alert(err));
+		.post("http://192.168.0.30/API/ChatGet.php", params)
+		.then(res => {
+			for (let key in res.data.MessageArray) {
+				this.state.messages.push(res.data.MessageArray[key]);
+			}
+			this.setState({ messages: this.state.messages });
+		})
+		.catch(err => alert(err));
 		console.log(this.state.messages);
 	}
 
 	render() {
 		return (
 			<div>
-				<div
-					style={
-						{
-							height: "500px",
-							width: "400px",
-							border: "1px solid black"
-						}
-					}
-				>
+				<div className="chatContainer">
 					<div>
 						{this.state.messages.map((message, index) => {
 							return (
