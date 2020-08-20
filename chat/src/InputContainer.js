@@ -8,6 +8,7 @@ class InputContainer extends React.Component {
 			value: ''
 		};
 		this.handleChange = this.handleChange.bind(this);
+		this.sendMessage = this.sendMessage.bind(this);
 	}
 
 	handleChange(event) {
@@ -28,7 +29,7 @@ class InputContainer extends React.Component {
 		return (
 			<div>
 				<input type="text" value={this.state.value} onChange={this.handleChange} ></input>
-				<button onClick={this.sendMessage()} >送信</button>
+				<button onClick={this.sendMessage} >送信</button>
 			</div>
 		);
 	}
