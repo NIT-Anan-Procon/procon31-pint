@@ -1,5 +1,6 @@
 import React from 'react';
 import YouTube from 'react-youtube';
+import axios from 'axios';
 
 import Pin from "./Pin"
 import Controller from "./Controller";
@@ -12,6 +13,7 @@ class YoutubePlayer extends React.Component {
     super(props);
     this.state = {
       videoEl: null,
+      MovieID: 1,
       pins: [{time: 10, type: 0},{time: 150, type: 1},{time: 200, type:2}]
     }
   }
@@ -19,6 +21,15 @@ class YoutubePlayer extends React.Component {
   addPin(time, type) {
     this.state.pins.push({ time: time, type: type });
     this.setState({ pins: this.state.pins });
+  }
+
+  syncPins(MovieID) {
+    const params = new URLSearchParams();
+    params.append('MovieID', MovieID);
+    axios
+      .post("http://192.168.0.30/API/PinGet.php", params)
+      .then(res => console.log(res))
+      .catch(err => alert(err));
   }
 
   render() {
@@ -54,7 +65,8 @@ class YoutubePlayer extends React.Component {
   }
 
   _onReady(event) {
-    this.setState({videoEl: event});
+    this.setState({ videoEl: event });
+    this.syncPins(this.state.MovieID);
   }
 }
 
