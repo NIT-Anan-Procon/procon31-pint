@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import YoutubePlayer from './YoutubePlayer';
 
 ReactDOM.render(
-  <App />,
+  <YoutubePlayer videoId={"M7lc1UVf-VE"} />,
   document.getElementById('root')
 );
