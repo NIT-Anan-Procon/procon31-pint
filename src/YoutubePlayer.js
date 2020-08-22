@@ -5,6 +5,7 @@ import axios from 'axios';
 import Pin from "./Pin"
 import Controller from "./Controller";
 import PinController from "./PinController";
+import ChatContainer from "./ChatContainer";
 
 import './YoutubePlayer.css';
 
@@ -14,22 +15,40 @@ class YoutubePlayer extends React.Component {
     this.state = {
       videoEl: null,
       MovieID: 1,
-      pins: [{time: 10, type: 0},{time: 150, type: 1},{time: 200, type:2}]
+      pinID: 0,
+      pins: []
     }
   }
 
   addPin(time, type) {
-    this.state.pins.push({ time: time, type: type });
-    this.setState({ pins: this.state.pins });
+    const params = new URLSearchParams();
+    params.append('MovieID', this.state.MovieID);
+    params.append('PinTime', time);
+    params.append('PinType', type);
+    axios
+      .post("http://192.168.0.30/API/PinReg.php", params)
+      .then(res => {
+        console.log(res)
+        this.syncPins()
+      })
+      .catch(err => alert(err));
   }
 
-  syncPins(MovieID) {
+  syncPins() {
     const params = new URLSearchParams();
-    params.append('MovieID', MovieID);
+    params.append('MovieID', this.state.MovieID);
+    this.state.pins = [];
     axios
       .post("http://192.168.0.30/API/PinGet.php", params)
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res)
+        for (let key in res.data.PinArray) {
+          this.state.pins[key]=(res.data.PinArray[key]);
+        }
+        this.setState({ pins: this.state.pins });
+      })
       .catch(err => alert(err));
+    console.log(this.state.pins);
   }
 
   render() {
@@ -39,27 +58,35 @@ class YoutubePlayer extends React.Component {
     };
 
     return (
-      <div>
-        <YouTube videoId={this.props.videoId} opts={opts} onReady={(event) => this._onReady(event)} />
-        <div className="pin">
-          {this.state.pins.map((pin) => {
-            return (
-              <Pin
-                time={pin.time}
-                type={pin.type}
-                getVideo={() => this.state.videoEl}
-                duration={() => this.state.videoEl.getDuration()}
-              />
-            )
-          })}
+      <div className="all">
+        <div className="youtube">
+          <YouTube videoId={this.props.videoId} opts={opts} onReady={(event) => this._onReady(event)} />
+          <div className="pin">
+            {this.state.pins.map((pin, index) => {
+              return (
+                <Pin
+                  pinTime={pin.pinTime}
+                  pinType={pin.pinType}
+                  pinID={index}
+                  getVideo={() => this.state.videoEl}
+                  duration={() => this.state.videoEl.getDuration()}
+                />
+              )
+            })}
+          </div>
+          <Controller
+            getVideo={() => this.state.videoEl}
+          />
+          <PinController
+            getVideoTime={() => Math.round(this.state.videoEl.target.getCurrentTime())}
+            addPin={(time, type) => this.addPin(time, type)}
+          />
         </div>
-        <Controller
-          getVideo={() => this.state.videoEl}
-        />
-        <PinController
-          getVideoTime={() => Math.round(this.state.videoEl.target.getCurrentTime())}
-          addPin={(time, type) => this.addPin(time, type)}
-        />
+        <div className="chat">
+          <ChatContainer
+            pinID={this.state.pinID}
+          />
+        </div>
       </div>
     );
   }

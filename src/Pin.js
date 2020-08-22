@@ -7,11 +7,11 @@ class Pin extends React.Component{
 
 	colorOfType(type) {
 		switch (type) {
-			case 0:
+			case "0":
 				return "#CB360D";
-			case 1:
+			case "1":
 				return "#E1AA13";
-			case 2:
+			case "2":
 				return "#138BAE";
 			default:
 				throw new Error("wrong pin type");
@@ -30,13 +30,16 @@ class Pin extends React.Component{
 		return (
 			<div
 				className="invertedTriangle"
-				onClick={() => this.seekPinTime(this.props.time)}
+				onClick={() =>
+					this.seekPinTime(this.props.pinTime)
+					
+				}
 				style={
 					{
-						borderBottom: "20px solid " + this.colorOfType(this.props.type),
+						borderBottom: "20px solid " + this.colorOfType(this.props.pinType),
 						cursor: "pointer",
 						position: "Absolute",
-						left: this.marginOfTime(this.props.time)+"px"
+						left: this.marginOfTime(this.props.pinTime)+"px"
 					}
 				}
 			>

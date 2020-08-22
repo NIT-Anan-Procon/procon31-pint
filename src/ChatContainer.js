@@ -4,8 +4,6 @@ import axios from "axios";
 import Message from "./Message";
 import InputContainer from "./InputContainer";
 
-import './styles.css';
-
 class ChatContainer extends React.Component {
 	constructor(props) {
 		super(props);
@@ -22,7 +20,7 @@ class ChatContainer extends React.Component {
 		.post("http://192.168.0.30/API/ChatGet.php", params)
 		.then(res => {
 			for (let key in res.data.MessageArray) {
-				this.state.messages.push(res.data.MessageArray[key]);
+				this.state.messages[key] = res.data.MessageArray[key]
 			}
 			this.setState({ messages: this.state.messages });
 		})
@@ -37,7 +35,7 @@ class ChatContainer extends React.Component {
 					<div>
 						{this.state.messages.map((message, index) => {
 							return (
-								<Message 
+								<Message
 									key={index}
 									message={message.msg}
 									user={message.userName}

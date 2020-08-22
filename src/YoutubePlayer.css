@@ -1,3 +1,11 @@
+.all {
+  display: flex;
+}
+
+.chat {
+  margin-left: 10px;
+}
+
 .pin {
   display: flex;
 }
@@ -27,4 +35,17 @@
 
 .exclamation {
   background-color: #138BAE;
+}
+
+.chatContainer {
+	height: 500px;
+	width: 400px;
+	border: 1px solid black;
+	border-radius: 5px;
+	overflow: auto;
+}
+
+.message {
+	margin: 3px;
+	border: 1px solid black;
 }
