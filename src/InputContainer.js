@@ -17,19 +17,31 @@ class InputContainer extends React.Component {
 
 	sendMessage() {
 		const params = new URLSearchParams();
-		params.append('PinID', 1);
+		params.append('PinID', this.props.pinID);
 		params.append('Message', this.state.value );
 		axios
 			.post("http://192.168.0.30/API/ChatSend.php", params)
-			.then(res => console.log(res))
+			.then(res => {
+				console.log(res);
+				this.props.syncMessage();
+				this.state.value = '';
+			})
 			.catch(err => alert(err));
 	}
 
 	render() {
 		return (
-			<div>
-				<input type="text" value={this.state.value} onChange={this.handleChange} ></input>
-				<button onClick={this.sendMessage} >送信</button>
+			<div className="inputContainer">
+				<input
+					type="text"
+					value={this.state.value}
+					onChange={this.handleChange}
+					className="messageField"
+				/>
+				<button
+					onClick={this.sendMessage}
+					className="sendButton"
+				>送信</button>
 			</div>
 		);
 	}

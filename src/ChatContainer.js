@@ -8,24 +8,7 @@ class ChatContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			messages: []
 		}
-	}
-
-	syncMessage = () =>{
-		const params = new URLSearchParams();
-		params.append('PinID', 1);
-		this.state.messages = [];
-		axios
-		.post("http://192.168.0.30/API/ChatGet.php", params)
-		.then(res => {
-			for (let key in res.data.MessageArray) {
-				this.state.messages[key] = res.data.MessageArray[key]
-			}
-			this.setState({ messages: this.state.messages });
-		})
-		.catch(err => alert(err));
-		console.log(this.state.messages);
 	}
 
 	render() {
@@ -33,7 +16,7 @@ class ChatContainer extends React.Component {
 			<div>
 				<div className="chatContainer">
 					<div>
-						{this.state.messages.map((message, index) => {
+						{this.props.messages.map((message, index) => {
 							return (
 								<Message
 									key={index}
@@ -44,8 +27,10 @@ class ChatContainer extends React.Component {
 						})}
 					</div>
 				</div>
-				<button onClick={this.syncMessage}>メッセージ取得</button>
-				<InputContainer />
+				<InputContainer 
+					pinID={this.props.pinID}
+					syncMessage={this.props.syncMessage}
+				/>
 			</div>
 		);
 	}

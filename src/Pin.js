@@ -30,9 +30,10 @@ class Pin extends React.Component{
 		return (
 			<div
 				className="invertedTriangle"
-				onClick={() =>
-					this.seekPinTime(this.props.pinTime)
-					
+				onClick={() =>{
+					this.seekPinTime(this.props.pinTime);
+					this.props.setPinID(this.props.pinID);
+					}
 				}
 				style={
 					{

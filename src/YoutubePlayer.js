@@ -15,8 +15,9 @@ class YoutubePlayer extends React.Component {
     this.state = {
       videoEl: null,
       MovieID: 1,
-      pinID: 0,
-      pins: []
+      pinID: null,
+      pins: [],
+			messages: []
     }
   }
 
@@ -51,6 +52,29 @@ class YoutubePlayer extends React.Component {
     console.log(this.state.pins);
   }
 
+  setPinID(pinID) {
+    this.state.pinID = pinID;
+    this.setState({ pinID: this.state.pinID });
+    this.syncMessage();
+  }
+
+  syncMessage = () => {
+    const params = new URLSearchParams();
+    params.append('PinID', this.state.pinID);
+    this.state.messages = [];
+    axios
+      .post("http://192.168.0.30/API/ChatGet.php", params)
+      .then(res => {
+        for (let key in res.data.MessageArray) {
+          this.state.messages[key] = res.data.MessageArray[key]
+        }
+        this.setState({ messages: this.state.messages });
+      })
+      .catch(err => alert(err));
+    console.log(this.state.messages);
+    setTimeout(this.syncMessage, 10000)
+  }
+
   render() {
     const opts = {
       height: '390',
@@ -68,6 +92,7 @@ class YoutubePlayer extends React.Component {
                   pinTime={pin.pinTime}
                   pinType={pin.pinType}
                   pinID={index}
+                  setPinID={(ID) => this.setPinID(ID)}
                   getVideo={() => this.state.videoEl}
                   duration={() => this.state.videoEl.getDuration()}
                 />
@@ -85,6 +110,8 @@ class YoutubePlayer extends React.Component {
         <div className="chat">
           <ChatContainer
             pinID={this.state.pinID}
+            messages={this.state.messages}
+            syncMessage={this.syncMessage}
           />
         </div>
       </div>
