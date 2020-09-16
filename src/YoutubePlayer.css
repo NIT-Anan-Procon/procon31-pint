@@ -175,11 +175,12 @@ button {
 }
 
 .chatContainer {
-	height: 520px;
-	width: 400px;
+	height: 389px;
+	width: 830px;
 	border: 1px solid black;
 	border-radius: 5px;
-	overflow: auto;
+  overflow: auto;
+  background-color: #C4C4C4;
 }
 
 .message {
@@ -214,10 +215,28 @@ button {
 }
 
 .header{
-  position: absolute;
   height:80px;
   width:1440px;
   left: 0px;
   top: 0px;
   background: #C4C4C4;
 }
+
+.videoiframe{
+  width: 960px;
+  height: 540px;
+  background: #C4C4C4;
+}
+
+.seekbar{
+  width: 960px;
+  height: 80px;
+  background: #C4C4C4;
+}
+
+.pinhighlight{
+  width: 780px;
+  height: 150px;
+  background: #C4C4C4;
+}
+
