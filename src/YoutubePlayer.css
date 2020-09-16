@@ -175,8 +175,8 @@ button {
 }
 
 .chatContainer {
-	height: 389px;
-	width: 830px;
+	height: 830px;
+	width: 389px;
 	border: 1px solid black;
 	border-radius: 5px;
   overflow: auto;
