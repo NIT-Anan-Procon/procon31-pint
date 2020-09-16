@@ -28,8 +28,7 @@ time, mark, audio, video {
 
 body {
  /* プロジェクトによって変動 */
- min-width: 1200px;
- min-height: 540px;
+ min-width: 960px;
  color: #000;
  line-height: 1.6;
  font-weight: 400;
