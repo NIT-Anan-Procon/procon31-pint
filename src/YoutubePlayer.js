@@ -6,6 +6,7 @@ import Pin from "./Pin"
 import Controller from "./Controller";
 import PinController from "./PinController";
 import ChatContainer from "./ChatContainer";
+import Header from "./Header";
 
 import './YoutubePlayer.css';
 
@@ -77,12 +78,15 @@ class YoutubePlayer extends React.Component {
 
   render() {
     const opts = {
-      height: '540',
-      width: '960',
+      height: '400',
+      width: '800',
     };
 
     return (
       <div className="all">
+        <div className="header">
+          
+        </div>
         <div className="youtube">
           <YouTube videoId={this.props.videoId} opts={opts} onReady={(event) => this._onReady(event)} />
           <div className="pin">
