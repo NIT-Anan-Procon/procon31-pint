@@ -78,15 +78,16 @@ class YoutubePlayer extends React.Component {
 
   render() {
     const opts = {
-      height: '400',
-      width: '800',
+      height: '540',
+      width: '960',
     };
 
     return (
+      <>
+      <div className="header">
+
+      </div>
       <div className="all">
-        <div className="header">
-          
-        </div>
         <div className="youtube">
           <YouTube videoId={this.props.videoId} opts={opts} onReady={(event) => this._onReady(event)} />
           <div className="pin">
@@ -119,6 +120,7 @@ class YoutubePlayer extends React.Component {
           />
         </div>
       </div>
+      </>
     );
   }
 

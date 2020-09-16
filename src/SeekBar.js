@@ -1,9 +1,10 @@
 import React from 'react';
 
-class Header extends React.Component{
+class SeekBar extends React.Component{
   render(){
     return(
-      <div classname="header">
+      <div classname="seekbar">
+
       </div>
     );
   }
