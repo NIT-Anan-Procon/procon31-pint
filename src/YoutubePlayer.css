@@ -212,3 +212,12 @@ button {
   margin-left: 5px;
   border: 1px solid black;
 }
+
+.header{
+  position: absolute;
+  height:80px;
+  width:1440px;
+  left: 0px;
+  top: 0px;
+  background: #C4C4C4;
+}
