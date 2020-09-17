@@ -181,6 +181,7 @@ button {
 	border-radius: 10px;
   overflow: auto;
   background-color: #C4C4C4;
+  margin-left:20px;
 }
 
 .message {
@@ -226,11 +227,14 @@ button {
   width: 960px;
   height: 80px;
   background: #C4C4C4;
+  margin-top:30px;
 }
 
 .pinhighlight{
   width: 780px;
   height: 150px;
   background: #C4C4C4;
+  margin-top:30px;
+  float:left;
 }
 

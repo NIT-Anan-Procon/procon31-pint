@@ -90,6 +90,12 @@ class YoutubePlayer extends React.Component {
       <div className="all">
         <div className="youtube">
           <YouTube videoId={this.props.videoId} opts={opts} onReady={(event) => this._onReady(event)} />
+          <div className="seekbar">
+
+          </div>
+          <div className="pinhighlight">
+
+          </div>
           <div className="pin">
             {this.state.pins.map((pin, index) => {
               return (
@@ -104,13 +110,9 @@ class YoutubePlayer extends React.Component {
               )
             })}
           </div>
-          <Controller
-            getVideo={() => this.state.videoEl}
-          />
-          <PinController
-            getVideoTime={() => Math.round(this.state.videoEl.target.getCurrentTime())}
-            addPin={(time, type) => this.addPin(time, type)}
-          />
+          <div className="pinbutton">
+            <a href="./Pin.svg"></a>
+          </div>
         </div>
         <div className="chat">
           <ChatContainer
