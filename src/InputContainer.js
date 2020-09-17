@@ -20,7 +20,7 @@ class InputContainer extends React.Component {
 		params.append('PinID', this.props.pinID);
 		params.append('Message', this.state.value );
 		axios
-			.post("http://192.168.0.30/API/ChatSend.php", params)
+			.post("http://procon31-server.ddns.net/API/ChatSend.php", params)
 			.then(res => {
 				console.log(res);
 				this.props.syncMessage();
