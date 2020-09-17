@@ -27,7 +27,7 @@ class YoutubePlayer extends React.Component {
     params.append('PinTime', time);
     params.append('PinType', type);
     axios
-      .post("http://192.168.0.30/API/PinReg.php", params)
+      .post("http://procon31-server.ddns.net/API/PinReg.php", params)
       .then(res => {
         console.log(res)
         this.syncPins()
@@ -40,7 +40,7 @@ class YoutubePlayer extends React.Component {
     params.append('MovieID', this.state.MovieID);
     this.state.pins = [];
     axios
-      .post("http://192.168.0.30/API/PinGet.php", params)
+      .post("http://procon31-server.ddns.net/API/PinGet.php", params)
       .then(res => {
         console.log(res)
         for (let key in res.data.PinArray) {
@@ -63,7 +63,7 @@ class YoutubePlayer extends React.Component {
     params.append('PinID', this.state.pinID);
     this.state.messages = [];
     axios
-      .post("http://192.168.0.30/API/ChatGet.php", params)
+      .post("http://procon31-server.ddns.net/API/ChatGet.php", params)
       .then(res => {
         for (let key in res.data.MessageArray) {
           this.state.messages[key] = res.data.MessageArray[key]
