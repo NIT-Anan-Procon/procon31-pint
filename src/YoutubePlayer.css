@@ -143,8 +143,10 @@ button {
 }
 
 .invertedTriangle {
-  width: 0;
+  /* ここにサイズ可変の処理 */
+  width: 100;
   height: 0;
+  border-bottom: 10px solid transparent;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent; transition-property: transform;
   transition-duration: 0.5s;
