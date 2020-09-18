@@ -162,18 +162,6 @@ button {
   margin: 0 10px 0 0;
 }
 
-.question {
-  background-color: #CB360D;
-}
-
-.understanding {
-  background-color: #E1AA13;
-}
-
-.exclamation {
-  background-color: #138BAE;
-}
-
 .chatContainer {
 	height: 830px;
   width: 389px;
@@ -190,6 +178,7 @@ button {
 }
 .inputContainer{
   margin-top: 10px;
+  margin-left:20px;
 }
 
 .messageField {
@@ -200,19 +189,6 @@ button {
 .sendButton {
   height: 20px;
   width:100px
-}
-
-.playButton {
-  height: 25px;
-  width: 40px;
-  border: 1px solid black;
-}
-
-.pauseButton {
-  height: 25px;
-  width: 40px;
-  margin-left: 5px;
-  border: 1px solid black;
 }
 
 .header{
@@ -236,5 +212,9 @@ button {
   background: #C4C4C4;
   margin-top:30px;
   float:left;
+}
+
+.pinbutton{
+  margin:30px;
 }
 
