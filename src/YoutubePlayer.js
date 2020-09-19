@@ -85,7 +85,9 @@ class YoutubePlayer extends React.Component {
     return (
       <>
       <div className="header">
-
+        <div className="logo">
+          <img scr="./image/pint ロゴ最終版.png" alt="Pintロゴ" />
+        </div>
       </div>
       <div className="all">
         <div className="youtube">
