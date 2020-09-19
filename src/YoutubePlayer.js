@@ -5,6 +5,7 @@ import axios from 'axios';
 import Pin from "./Pin"
 import ChatContainer from "./ChatContainer";
 
+import './reset.css';
 import './YoutubePlayer.css';
 
 class YoutubePlayer extends React.Component {
