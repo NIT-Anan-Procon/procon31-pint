@@ -18,7 +18,6 @@ class YoutubePlayer extends React.Component {
       pinID: null,
       pins: [],
       messages: []
-      // messagelength
     }
   }
 
@@ -94,7 +93,7 @@ class YoutubePlayer extends React.Component {
             {this.state.pins.map((pin, index) => {
               return (
                 <Pin
-                  //pinMsglength={pin.MsgSum}
+                  pinMsgLength={pin.MsgSum}
                   pinTime={pin.pinTime}
                   pinType={pin.pinType}
                   pinID={index}

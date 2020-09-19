@@ -25,15 +25,13 @@ class Pin extends React.Component{
 	marginOfTime(currentTime) {
 		return Math.round((currentTime * 640) / 1343);
 	}
-	/*
+	
 	pinSize(msgleng){
-		size=0;
-		if(msgleng<=5)       size=10;
-		else if(msgleng<=10) size=12;
-		else								 size=15;
-		return size;
+		if(msgleng<=5) return 10;
+		else if(msgleng<=10) return 20;
+		else return 30;
 	}
-	*/
+
 	render() {
 		return (
 			<div
@@ -45,8 +43,7 @@ class Pin extends React.Component{
 				}
 				style={
 					{
-						//size: this.pinSize(this.props.pinMsglength),
-						borderBottom: "20px solid " + this.colorOfType(this.props.pinType),
+						borderBottom: this.pinSize(this.props.pinMsgLength) +"px solid " + this.colorOfType(this.props.pinType),
 						cursor: "pointer",
 						position: "Absolute",
 						left: this.marginOfTime(this.props.pinTime)+"px"
