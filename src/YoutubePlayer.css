@@ -44,6 +44,8 @@
 .commentContainer{
   width: 389px;
   height: 765px;
+  margin-left:30px;
+  margin-top:5px;
   
   border: 2px solid #A9D18E;
   box-sizing: border-box;
@@ -52,8 +54,9 @@
 .chatContainer {
   width: 379px;
   height: 710px;
+  margin-left:4px;
   
-  background: #79F9F9;
+  background: #F9F9F9;
 }
 
 .message {
@@ -83,6 +86,23 @@
   border-radius: 5px;
 }
 
+.soushin{
+  width: 40px;
+  height: 27px;
+  margin-left:22px;
+  
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 27px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  
+  color: #FFFFFF;
+}
+
 .header{
   height:80px;
   width:1440px;
@@ -90,10 +110,6 @@
   top: 0px;
   background: #FFFFFF;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
-}
-
-.logo{
-  margin-left: 30px;
 }
 
 .seekbar{
@@ -110,8 +126,9 @@
   position: absolute;
   width: 936px;
   height: 0px;
-  bottom: 0px;
+  bottom: 10px;
   border: 5px solid #FE5600;
+  border-radius: 5px;
   /* Inside Auto Layout */
   flex: none;
   order: 0;
@@ -130,11 +147,69 @@
   float:left;
 }
 
+.textbox1{
+  width: 160px;
+  height: 27px;
+  margin-top: 13px;
+  margin-left:15px;
+  
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 27px;
+  text-align: center;
+  
+  color: #4B4B4B;
+}
+
+.line1{
+  width: 178px;
+  height: 0px;
+  margin-left:15px;
+  margin-top:-5px;
+  
+  border: 2px solid #FE5600;
+}
+
+.textbox2{
+  width: 100px;
+  height: 27px;
+  margin-left: 405px;
+  margin-top: -25px;
+  
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 27px;
+  text-align: center;
+  
+  color: #4B4B4B;
+  
+}
+
+.line2{
+  width: 178px;
+  height: 0px;
+  margin-left:405px;
+  margin-top:-5px;
+  
+  border: 2px solid #FE5600;
+}
+
 .pinbutton{
   position: relative;
   margin-top: 60px;
 }
 
+.path4{
+  margin-top:15px;
+  margin-left:405px;
+}
+
 .pinbuttonChild{
   position: absolute;
+  left:850px;
+  top:25px;
 }
