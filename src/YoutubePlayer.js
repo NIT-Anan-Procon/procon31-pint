@@ -35,7 +35,7 @@ class YoutubePlayer extends React.Component {
       .catch(err => alert(err));
   }
 
-  syncPins() {
+  syncPins = () => {
     const params = new URLSearchParams();
     params.append('MovieID', this.state.MovieID);
     this.state.pins = [];
@@ -50,6 +50,7 @@ class YoutubePlayer extends React.Component {
       })
       .catch(err => alert(err));
     console.log(this.state.pins);
+    setTimeout(this.syncPins, 10000)
   }
 
   setPinID(pinID) {
@@ -57,11 +58,7 @@ class YoutubePlayer extends React.Component {
     this.setState({ pinID: this.state.pinID });
     this.syncMessage();
   }
-  /*
-  setPinSize(pinmessagelength){
 
-  } 
-  */
   syncMessage = () => {
     const params = new URLSearchParams();
     params.append('PinID', this.state.pinID);
@@ -93,7 +90,8 @@ class YoutubePlayer extends React.Component {
             {this.state.pins.map((pin, index) => {
               return (
                 <Pin
-                  pinMsgLength={pin.MsgSum}
+                  pinReact={this.state.pins[index].reactSum}
+                  pinMsgLength={this.state.pins[index].msgSum}
                   pinTime={pin.pinTime}
                   pinType={pin.pinType}
                   pinID={index}
@@ -126,6 +124,7 @@ class YoutubePlayer extends React.Component {
   _onReady(event) {
     this.setState({ videoEl: event });
     this.syncPins(this.state.MovieID);
+    
   }
 }
 
