@@ -16,6 +16,7 @@ class Pin extends React.Component{
 			default:
 				throw new Error("wrong pin type");
 		}
+		
 	}
 */
 	colorOfReaction(reactsum){
