@@ -124,7 +124,6 @@ class YoutubePlayer extends React.Component {
   _onReady(event) {
     this.setState({ videoEl: event });
     this.syncPins(this.state.MovieID);
-    
   }
 }
 

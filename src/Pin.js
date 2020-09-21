@@ -4,7 +4,7 @@ class Pin extends React.Component{
 	constructor(props) {
 		super(props);
 	}
-
+/*
 	colorOfType(type) {
 		switch (type) {
 			case "0":
@@ -17,7 +17,7 @@ class Pin extends React.Component{
 				throw new Error("wrong pin type");
 		}
 	}
-
+*/
 	colorOfReaction(reactsum){
 		if(reactsum>=0) return Math.log(reactsum+1)*30;
 		else return 0;
