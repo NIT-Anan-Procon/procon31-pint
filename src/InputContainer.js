@@ -41,7 +41,11 @@ class InputContainer extends React.Component {
 				<button
 					onClick={this.sendMessage}
 					className="sendButton"
-				>送信</button>
+				>
+					<div className="soushin">
+						送信
+					</div>
+				</button>
 			</div>
 		);
 	}
