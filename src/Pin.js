@@ -1,9 +1,11 @@
 import React from 'react';
 
 class Pin extends React.Component{
+	/*
 	constructor(props) {
 		super(props);
 	}
+	*/
 
 	colorOfType(type) {
 		switch (type) {

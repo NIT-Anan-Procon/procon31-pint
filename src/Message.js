@@ -1,8 +1,12 @@
 import React from "react";
 
+import Good from "./Good";
+
 class Message extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+        }
 	}
 
 	render() {
@@ -13,6 +17,12 @@ class Message extends React.Component {
 				</div>
 				<div id="user">
 					ユーザー: {this.props.user}
+				</div>
+				<div>
+					<Good 
+						messageID={this.props.messageId}
+						reactnum={this.props.good}
+					/>
 				</div>
 			</div>
 		);

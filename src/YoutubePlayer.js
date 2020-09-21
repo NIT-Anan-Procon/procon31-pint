@@ -17,7 +17,7 @@ class YoutubePlayer extends React.Component {
       MovieID: 1,
       pinID: null,
       pins: [],
-			messages: []
+      messages: [],
     }
   }
 
@@ -27,7 +27,7 @@ class YoutubePlayer extends React.Component {
     params.append('PinTime', time);
     params.append('PinType', type);
     axios
-      .post("http://192.168.0.30/API/PinReg.php", params)
+      .post("http://procon31-server.ddns.net/API/PinReg.php", params)
       .then(res => {
         console.log(res)
         this.syncPins()
@@ -38,13 +38,13 @@ class YoutubePlayer extends React.Component {
   syncPins() {
     const params = new URLSearchParams();
     params.append('MovieID', this.state.MovieID);
-    this.state.pins = [];
+    this.setState.pins = [];
     axios
-      .post("http://192.168.0.30/API/PinGet.php", params)
+      .post("http://procon31-server.ddns.net/API/PinGet.php", params)
       .then(res => {
         console.log(res)
         for (let key in res.data.PinArray) {
-          this.state.pins[key]=(res.data.PinArray[key]);
+          this.setState.pins[key] = (res.data.PinArray[key]);
         }
         this.setState({ pins: this.state.pins });
       })
@@ -53,7 +53,7 @@ class YoutubePlayer extends React.Component {
   }
 
   setPinID(pinID) {
-    this.state.pinID = pinID;
+    this.setState.pinID = pinID;
     this.setState({ pinID: this.state.pinID });
     this.syncMessage();
   }
@@ -61,12 +61,12 @@ class YoutubePlayer extends React.Component {
   syncMessage = () => {
     const params = new URLSearchParams();
     params.append('PinID', this.state.pinID);
-    this.state.messages = [];
+    this.setState.messages = [];
     axios
-      .post("http://192.168.0.30/API/ChatGet.php", params)
+      .post("http://procon31-server.ddns.net/API/ChatGet.php", params)
       .then(res => {
         for (let key in res.data.MessageArray) {
-          this.state.messages[key] = res.data.MessageArray[key]
+          this.setState.messages[key] = res.data.MessageArray[key];
         }
         this.setState({ messages: this.state.messages });
       })
