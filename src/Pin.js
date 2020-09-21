@@ -19,7 +19,8 @@ class Pin extends React.Component{
 	}
 
 	colorOfReaction(reactsum){
-		return Math.exp(reactsum)*10;
+		if(reactsum>=0) return Math.log(reactsum+1)*30;
+		else return 0;
 	}
 
 	seekPinTime(time) {
