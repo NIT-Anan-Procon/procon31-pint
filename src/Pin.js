@@ -50,7 +50,7 @@ class Pin extends React.Component{
 				style={
 					{
 						borderBottom: this.pinSize(this.props.pinMsgLength) +"px solid",
-						borderBottomColor: "hsl( 30, "+this.colorOfReaction(this.props.pinReact)+"%, 60%)",
+						borderBottomColor: "hsl( 0, "+this.colorOfReaction(this.props.pinReact)+"%, 60%)",
 						cursor: "pointer",
 						position: "Absolute",
 						left: this.marginOfTime(this.props.pinTime)+"px"
