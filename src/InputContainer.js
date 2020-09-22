@@ -24,7 +24,7 @@ class InputContainer extends React.Component {
 			.then(res => {
 				console.log(res);
 				this.props.syncMessage();
-				this.setState({value: ''});
+				this.state.value = '';
 			})
 			.catch(err => alert(err));
 	}
@@ -41,7 +41,11 @@ class InputContainer extends React.Component {
 				<button
 					onClick={this.sendMessage}
 					className="sendButton"
-				>送信</button>
+				>
+					<div className="soushin">
+						送信
+					</div>
+				</button>
 			</div>
 		);
 	}

@@ -1,11 +1,9 @@
 import React from 'react';
 
 class Pin extends React.Component{
-	/*
 	constructor(props) {
 		super(props);
 	}
-	*/
 
 	colorOfType(type) {
 		switch (type) {
@@ -27,6 +25,12 @@ class Pin extends React.Component{
 	marginOfTime(currentTime) {
 		return Math.round((currentTime * 640) / 1343);
 	}
+	
+	pinSize(msgleng){
+		if(msgleng<=5) return 10;
+		else if(msgleng<=10) return 20;
+		else return 30;
+	}
 
 	render() {
 		return (
@@ -39,7 +43,7 @@ class Pin extends React.Component{
 				}
 				style={
 					{
-						borderBottom: "20px solid " + this.colorOfType(this.props.pinType),
+						borderBottom: this.pinSize(this.props.pinMsgLength) +"px solid " + this.colorOfType(this.props.pinType),
 						cursor: "pointer",
 						position: "Absolute",
 						left: this.marginOfTime(this.props.pinTime)+"px"
