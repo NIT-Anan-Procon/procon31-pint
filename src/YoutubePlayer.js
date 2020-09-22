@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import Pin from "./Pin"
 import ChatContainer from "./ChatContainer";
+import PintLogo from "./image/PintLogo.png"
 
 import './reset.css';
 import './YoutubePlayer.css';
@@ -84,7 +85,7 @@ class YoutubePlayer extends React.Component {
     return (
       <>
       <div className="header">
-          <img src="./image/PintLogo.png" alt="Pintロゴ" width="200px" height="60px"/>
+          <img src={PintLogo} alt="Pintロゴ" width="200px" height="60px"/>
       </div>
       <div className="all">
         <div className="youtube">
