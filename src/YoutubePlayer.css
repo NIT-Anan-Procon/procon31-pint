@@ -52,20 +52,19 @@
   box-sizing: border-box;
   border-radius: 5px;
 }
+
 .chatContainer {
   width: 379px;
   height: 710px;
   margin-left:4px;
   
   background: #F9F9F9;
+  overflow: auto;
 }
 
 .message {
 	margin: 3px;
 	border: 1px solid black;
-}
-
-.inputContainer{
 }
 
 .messageField {
