@@ -4,7 +4,7 @@ class Pin extends React.Component{
 	constructor(props) {
 		super(props);
 	}
-
+/*
 	colorOfType(type) {
 		switch (type) {
 			case "0":
@@ -16,6 +16,12 @@ class Pin extends React.Component{
 			default:
 				throw new Error("wrong pin type");
 		}
+		
+	}
+*/
+	colorOfReaction(reactsum){
+		if(reactsum>=0) return Math.log(reactsum+1)*30;
+		else return 0;
 	}
 
 	seekPinTime(time) {
@@ -27,9 +33,9 @@ class Pin extends React.Component{
 	}
 	
 	pinSize(msgleng){
-		if(msgleng<=5) return 10;
+		if(msgleng<=5) 			 return 10;
 		else if(msgleng<=10) return 20;
-		else return 30;
+		else 								 return 30;
 	}
 
 	render() {
@@ -43,7 +49,8 @@ class Pin extends React.Component{
 				}
 				style={
 					{
-						borderBottom: this.pinSize(this.props.pinMsgLength) +"px solid " + this.colorOfType(this.props.pinType),
+						borderBottom: this.pinSize(this.props.pinMsgLength) +"px solid",
+						borderBottomColor: "hsl( 0, "+this.colorOfReaction(this.props.pinReact)+"%, 60%)",
 						cursor: "pointer",
 						position: "Absolute",
 						left: this.marginOfTime(this.props.pinTime)+"px"
