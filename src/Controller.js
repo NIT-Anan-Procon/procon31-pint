@@ -1,9 +1,11 @@
 import React from 'react';
 
 class Controller extends React.Component {
+  /*
   constructor(props) {
     super(props);
   }
+  */
 
   render() {
     return (

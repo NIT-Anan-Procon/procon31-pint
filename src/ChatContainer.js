@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 
 import Message from "./Message";
 import InputContainer from "./InputContainer";
@@ -20,6 +19,8 @@ class ChatContainer extends React.Component {
 							return (
 								<Message
 									key={index}
+									messageID={message.msgId}
+									good={message.msgId}
 									message={message.msg}
 									user={message.userName}
 								/>
