@@ -19,8 +19,8 @@ class ChatContainer extends React.Component {
 							return (
 								<Message
 									key={index}
-									messageID={message.msgId}
-									good={message.msgId}
+									messageID={index}
+									reactNum={message.reactNum}
 									message={message.msg}
 									user={message.userName}
 								/>

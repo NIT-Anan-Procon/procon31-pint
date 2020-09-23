@@ -20,8 +20,8 @@ class Message extends React.Component {
 				</div>
 				<div>
 					<Good 
-						messageID={this.props.messageId}
-						reactnum={this.props.good}
+						messageID={this.props.messageID}
+						reactNum={this.props.reactNum}
 					/>
 				</div>
 			</div>
