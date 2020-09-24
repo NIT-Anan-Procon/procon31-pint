@@ -9,6 +9,8 @@ import PinController from "./PinController";
 
 import './reset.css';
 import './YoutubePlayer.css';
+import './Chat.css';
+import './Pin.css'
 
 class YoutubePlayer extends React.Component {
   constructor(props) {
@@ -91,7 +93,7 @@ class YoutubePlayer extends React.Component {
       <div className="all">
         <div className="youtube">
           <YouTube videoId={this.props.videoId} opts={opts} onReady={(event) => this._onReady(event)} />
-          <div className="seekbar">
+          <div className="pinBox">
             <div className="pin">
               {this.state.pins.map((pin, index) => {
                 return (
@@ -107,12 +109,11 @@ class YoutubePlayer extends React.Component {
                   />
                 )
               })}
-              </div>
-              <div className="redbar">
             </div>
+            <hr className="seekBar" />
           </div>
           <div>
-            <div className="pinhighlight">
+            <div className="pinHighLight">
               <div className="textbox1">ピンのハイライト</div>
               <div className="line1" />
               <div className="textbox2">ピンの情報</div>
@@ -141,7 +142,7 @@ class YoutubePlayer extends React.Component {
           </div>
         </div>
         <div>
-          <div className="pintitlebox">
+          <div className="chatTitleBox">
             <h2>ピンのタイトル</h2>
           </div>
           <div>

@@ -1,24 +1,13 @@
 .all {
+  width: 100%;
+  margin: 0 auto;
   display: flex;
+  margin: 0 auto;
   margin-top: 30px;
-  margin-left: 30px;
 }
 
 .chat {
   margin-left: 10px;
-}
-
-.pin {
-  display: flex;
-}
-
-.pins{
-  transition-property: transform;
-  transition-duration: 0.5s;
-}
-
-.pins:hover{
-  transform:scale(1.2,1.2);
 }
 
 .circle {
@@ -29,118 +18,10 @@
   margin: 0 10px 0 0;
 }
 
-.pintitlebox{
-  width: 389px;
-  height: 60px;
-
-  background: #FE5600;
-  border-radius: 5px;
-  margin-left:30px;
-}
-
-.commentContainer{
-  width: 390px;
-  height: 765px;
-  margin-left:30px;
-  margin-top:5px;
-  
-  border: 2px solid #A9D18E;
-  box-sizing: border-box;
-  border-radius: 5px;
-}
-
-.chatContainer {
-  width: 379px;
-  height: 710px;
-  margin-left:4px;
-  
-  background: #F9F9F9;
-  overflow: auto;
-}
-
-.message {
-	margin: 3px;
-	border: 1px solid black;
-}
-
-.messageField {
-  width: 290px;
-  height: 40px;
-  margin:5px;
-
-  background: #FFFFFF;
-  border: 2px solid #A9D18E;
-  box-sizing: border-box;
-  border-radius: 3px;
-}
-
-.sendButton {
-  width: 84px;
-  height: 40px;
-  
-  background: #FE5600;
-  border-radius: 5px;
-}
-
-.soushin{
-  width: 40px;
-  height: 27px;
-  margin-left:22px;
-  
-  font-family: Noto Sans;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 27px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  
-  color: #FFFFFF;
-}
-
 .header{
   height:80px;
-  width:1440px;
-  left: 0px;
-  top: 0px;
   background: #FFFFFF;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
-}
-
-.seekbar{
-  position: relative;
-  width: 960px;
-  height: 80px;
-  top: 30px;
-  
-  background: #A9D18E;
-  border-radius: 5px;
-}
-
-.redbar{
-  position: absolute;
-  width: 936px;
-  height: 0px;
-  bottom: 10px;
-  border: 5px solid #FE5600;
-  border-radius: 5px;
-  /* Inside Auto Layout */
-  flex: none;
-  order: 0;
-  align-self: center;
-  margin: 0px 10px;
-}
-
-.pinhighlight{
-  width: 780px;
-  height: 150px;
-  margin-right:30px;
-  
-  border: 3px solid #A9D18E;
-  box-sizing: border-box;
-  border-radius: 10px;
-  float:left;
 }
 
 .textbox1{
@@ -149,7 +30,6 @@
   margin-top: 13px;
   margin-left:15px;
   
-  font-family: Noto Sans;
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
@@ -174,7 +54,6 @@
   margin-left: 405px;
   margin-top: -25px;
   
-  font-family: Noto Sans;
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
