@@ -44,7 +44,7 @@ class Pin extends React.Component{
 					}
 				}
 			>
-				<img className="invertedTriangle" src={pinimage} alt="" width={this.pinSize(this.props.pinMsgLength)} height={this.pinSize(this.props.pinMsgLength)} />
+				<img className="pins" src={pinimage} alt="" width={this.pinSize(this.props.pinMsgLength)} height={this.pinSize(this.props.pinMsgLength)} color="#ffff00"/>
 			</div>
 		)
 	}
