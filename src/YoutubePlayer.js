@@ -23,11 +23,11 @@ class YoutubePlayer extends React.Component {
     }
   }
 
-  addPin(time, type) {
+  addPin(time) {
     const params = new URLSearchParams();
     params.append('MovieID', this.state.MovieID);
     params.append('PinTime', time);
-    params.append('PinType', type);
+    // params.append('PinType', type);
     axios
       .post("http://procon31-server.ddns.net/API/PinReg.php", params)
       .then(res => {
@@ -157,6 +157,12 @@ class YoutubePlayer extends React.Component {
             </div>
           </div>  
         </div>
+        {/* 試行錯誤中 */}
+        <PinController
+          getVideoTime={() => Math.round(this.state.videoEl.target.getCurrentTime())}
+          addPin={(time) => this.addPin(time)}
+        />
+        {/* 試行錯誤中 */}
 
       </div>
       </>
