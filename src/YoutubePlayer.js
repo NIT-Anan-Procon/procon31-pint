@@ -157,16 +157,6 @@ class YoutubePlayer extends React.Component {
             </div>
           </div>  
         </div>
-        {/* 試行錯誤中 */}
-        <div >
-          動かない点P
-          <PinController
-            getVideoTime={() => Math.round(this.state.videoEl.target.getCurrentTime())}
-            addPin={(time, type) => this.addPin(time, type)}
-          />
-        </div>
-        <PinHighLight />
-        {/* 試行錯誤中 */}
 
       </div>
       </>
