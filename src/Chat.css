@@ -1,0 +1,59 @@
+.chatTitleBox{
+	width: 389px;
+	height: 60px;
+  
+	background: #FE5600;
+	border-radius: 5px;
+	margin-left:30px;
+}
+
+.chatContainer {
+	width: 379px;
+	height: 710px;
+	margin-left:4px;
+	
+	background: #F9F9F9;
+	overflow: auto;
+  }
+
+.message {
+	margin: 3px;
+	border: 1px solid black;
+}
+
+.commentContainer{
+	width: 390px;
+	height: 765px;
+	margin-left:30px;
+	margin-top:5px;
+	
+	border: 2px solid #A9D18E;
+	box-sizing: border-box;
+	border-radius: 5px;
+}
+  
+.messageField {
+	width: 290px;
+	height: 40px;
+	margin:5px;
+  
+	background: #FFFFFF;
+	border: 2px solid #A9D18E;
+	box-sizing: border-box;
+	border-radius: 3px;
+}
+
+.sendButton {
+	width: 84px;
+	height: 40px;
+	background: #FE5600;
+	border-radius: 5px;
+
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 27px;
+	text-align: center;
+	color: #FFFFFF;
+}
+
