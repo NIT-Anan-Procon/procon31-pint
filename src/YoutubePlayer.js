@@ -101,7 +101,7 @@ class YoutubePlayer extends React.Component {
                     pinID={index}
                     setPinID={(ID) => this.setPinID(ID)}
                     getVideo={() => this.state.videoEl}
-                    duration={() => this.state.videoEl.getDuration()}
+                    duration={() => this.state.videoEl.target.getDuration()}
                   />
                 )
               })}

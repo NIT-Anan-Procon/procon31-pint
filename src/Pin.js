@@ -16,14 +16,15 @@ class Pin extends React.Component{
 		this.props.getVideo().target.seekTo(time);
 	}
 
-	marginOfTime(currentTime) {
-		return Math.round((currentTime * 640) / 1343);
+	marginOfTime(currentTime,duration) {
+		const iframeSize = 936;
+		return Math.round(currentTime * iframeSize / duration);
 	}
 	
 	pinSize(msgleng){
-		if(msgleng<=5) 			 return 10;
-		else if(msgleng<=10) return 20;
-		else 								 return 30;
+		if(msgleng<=5) 			 return 30;
+		else if(msgleng<=10) return 40;
+		else 								 return 50;
 	}
 
 	render() {
@@ -38,12 +39,12 @@ class Pin extends React.Component{
 					{
 						cursor: "pointer",
 						position: "Absolute",
-						left: this.marginOfTime(this.props.pinTime)+"px"
+						left: (this.marginOfTime(this.props.pinTime,this.props.duration())-(this.pinSize(this.props.pinMsgLength)/2)+16)+"px",
+						bottom: 20
 					}
 				}
 			>
-				<img className="invertedTriangle" src={pinimage} alt="" width="100
-				0px" height="1000px" />
+				<img className="invertedTriangle" src={pinimage} alt="" width={this.pinSize(this.props.pinMsgLength)} height={this.pinSize(this.props.pinMsgLength)} />
 			</div>
 		)
 	}
