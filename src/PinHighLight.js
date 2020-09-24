@@ -9,3 +9,5 @@ class PinHighLight extends React.Component{
     );
   }
 }
+
+export default PinHighLight;

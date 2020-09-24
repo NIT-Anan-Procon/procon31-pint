@@ -6,6 +6,7 @@ import Pin from "./Pin"
 import ChatContainer from "./ChatContainer";
 import PintLogo from "./image/PintLogo.png";
 import PinController from "./PinController";
+import PinHighLight from "./PinHighLight";
 
 import './reset.css';
 import './YoutubePlayer.css';
@@ -156,6 +157,17 @@ class YoutubePlayer extends React.Component {
             </div>
           </div>  
         </div>
+        {/* 試行錯誤中 */}
+        <div >
+          動かない点P
+          <PinController
+            getVideoTime={() => Math.round(this.state.videoEl.target.getCurrentTime())}
+            addPin={(time, type) => this.addPin(time, type)}
+          />
+        </div>
+        <PinHighLight />
+        {/* 試行錯誤中 */}
+
       </div>
       </>
     );
