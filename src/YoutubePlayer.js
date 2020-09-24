@@ -92,8 +92,23 @@ class YoutubePlayer extends React.Component {
         <div className="youtube">
           <YouTube videoId={this.props.videoId} opts={opts} onReady={(event) => this._onReady(event)} />
           <div className="seekbar">
-            <div className="redbar">
-
+            <div className="pin">
+              {this.state.pins.map((pin, index) => {
+                return (
+                  <Pin
+                    pinReact={this.state.pins[index].reactSum}
+                    pinMsgLength={this.state.pins[index].msgSum}
+                    pinTime={pin.pinTime}
+                    pinType={pin.pinType}
+                    pinID={index}
+                    setPinID={(ID) => this.setPinID(ID)}
+                    getVideo={() => this.state.videoEl}
+                    duration={() => this.state.videoEl.target.getDuration()}
+                  />
+                )
+              })}
+              </div>
+              <div className="redbar">
             </div>
           </div>
           <div>
@@ -123,22 +138,6 @@ class YoutubePlayer extends React.Component {
                 </svg>
               </div> 
             </div>
-          </div>
-          <div className="pin">
-            {this.state.pins.map((pin, index) => {
-              return (
-                <Pin
-                  pinReact={this.state.pins[index].reactSum}
-                  pinMsgLength={this.state.pins[index].msgSum}
-                  pinTime={pin.pinTime}
-                  pinType={pin.pinType}
-                  pinID={index}
-                  setPinID={(ID) => this.setPinID(ID)}
-                  getVideo={() => this.state.videoEl}
-                  duration={() => this.state.videoEl.getDuration()}
-                />
-              )
-            })}
           </div>
         </div>
         <div>

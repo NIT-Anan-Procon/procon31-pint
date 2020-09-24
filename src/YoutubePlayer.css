@@ -12,15 +12,12 @@
   display: flex;
 }
 
-.invertedTriangle {
-  width: 0px;
-  height: 0px;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent; transition-property: transform;
+.pins{
+  transition-property: transform;
   transition-duration: 0.5s;
 }
 
-.invertedTriangle:hover{
+.pins:hover{
   transform:scale(1.2,1.2);
 }
 
@@ -212,3 +209,4 @@
   left:850px;
   top:25px;
 }
+
