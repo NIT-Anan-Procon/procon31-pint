@@ -130,9 +130,10 @@ class YoutubePlayer extends React.Component {
                 pinMsgLength={this.state.pins[this.state.pinID].msgSum}
                 />
               }
-                <PinController 
-                  getVideoTime={this.state.videoEl}
-                />
+              <PinController
+                getVideoTime={() => Math.round(this.state.videoEl.target.getCurrentTime())}
+                addPin={(time) => this.addPin(time)}
+              />
             </div>
           </div>
         </div>
