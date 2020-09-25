@@ -100,8 +100,6 @@ class YoutubePlayer extends React.Component {
       width: '960',
     };
 
-    const isPin = this.state.pinID;
-
     return (
       <>
       <header>

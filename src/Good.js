@@ -36,7 +36,6 @@ class Good extends React.Component {
     };
 
     goodJudge() {
-        const isGood = this.state.count;
         if(this.state.count == 0) {
             return HeartDefault
         }
