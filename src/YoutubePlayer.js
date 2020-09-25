@@ -6,6 +6,7 @@ import Pin from "./Pin"
 import PinHighLight from "./PinHighLight";
 import PinController from "./PinController";
 import ChatContainer from "./ChatContainer";
+import Login from "./Login";
 
 import PintLogo from "./image/PintLogo.png";
 
@@ -13,6 +14,7 @@ import './reset.css';
 import './YoutubePlayer.css';
 import './Pin.css'
 import './Chat.css';
+import './Login.css';   //ログイン画面のcss
 
 class YoutubePlayer extends React.Component {
   constructor(props) {
@@ -144,6 +146,9 @@ class YoutubePlayer extends React.Component {
             syncMessage={this.syncMessage}
           />
         </div>
+      </div>
+      <div>
+        <Login />
       </div>
       </>
     );
