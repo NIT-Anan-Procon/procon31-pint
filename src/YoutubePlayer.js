@@ -87,6 +87,8 @@ class YoutubePlayer extends React.Component {
       width: '960',
     };
 
+    const isPin = this.state.pinID;
+
     return (
       <>
       <header>
@@ -115,10 +117,21 @@ class YoutubePlayer extends React.Component {
             <hr className="seekBar" />
           </div>
           <div className="pinHighLightAndButton">
-            <PinHighLight />
-            <PinController
-              getVideoTime={() => Math.round(this.state.videoEl.target.getCurrentTime())}
-            />
+            <div className="pin">
+              {isPin == null &&
+                <PinHighLight
+                pinReact={0}
+                pinMsgLength={0}
+                />
+              }
+              {isPin != null &&
+                <PinHighLight
+                pinReact={this.state.pins[this.state.pinID].reactSum}
+                pinMsgLength={this.state.pins[this.state.pinID].msgSum}
+                />
+              }
+                <PinController />
+            </div>
           </div>
         </div>
         <div className="rightSection">

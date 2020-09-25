@@ -12,6 +12,7 @@ class Good extends React.Component {
             messageID: this.props.messageID
         }
     }
+    
   
     addGood = () => {
         const params = new URLSearchParams();
@@ -37,18 +38,36 @@ class Good extends React.Component {
     };
 
     render(){
+        const isGood = this.state.count;
         return (
-            <>
-                <img src={heart1} id={this.state.messageID} clssName="LikesIcon-fa-heart" onClick={this.goodClick} 
-                    style={
-                        {
-                            width: "32px",
-                            height: "32px"
+            <div>
+                {isGood > 0 &&
+                    <>
+                    <img src={heart2} id={this.state.messageID} clssName="LikesIcon-fa-heart" onClick={this.goodClick} 
+                        style={
+                            {
+                                width: "32px",
+                                height: "32px"
+                            }
                         }
-                    }
-                />
-                {this.state.count}
-            </>
+                    />
+                    {this.state.count}
+                </>
+                } 
+                {isGood == 0 &&
+                    <>
+                    <img src={heart1} id={this.state.messageID} clssName="LikesIcon-fa-heart" onClick={this.goodClick} 
+                        style={
+                            {
+                                width: "32px",
+                                height: "32px"
+                            }
+                        }
+                    />
+                    {this.state.count}
+                    </>
+                }
+            </div>
         )
     }
 }
