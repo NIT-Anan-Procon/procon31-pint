@@ -39,6 +39,33 @@
 	border: 1px solid black;
 }
 
+.reaction {
+	overflow: hidden;
+	display: flex;
+}
+
+.good {
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	width: 100px;
+}
+
+.goodIcon {
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+}
+
+.reply {
+	border: 1px solid #000;
+	cursor: pointer;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 /* チャット入力欄 */
 
 .inputContainer {

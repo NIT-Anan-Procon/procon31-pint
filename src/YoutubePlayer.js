@@ -4,7 +4,6 @@ import axios from 'axios';
 
 import Pin from "./Pin"
 import PinHighLight from "./PinHighLight";
-import PinController from "./PinController";
 import ChatContainer from "./ChatContainer";
 
 import PintLogo from "./image/PintLogo.png";
@@ -22,7 +21,9 @@ class YoutubePlayer extends React.Component {
       MovieID: 1,
       pinID: null,
       pins: [],
-      messages: []
+      messages: [],
+      pinMessageSum: 0,
+      pinReactSum: 0
     }
   }
 
@@ -55,13 +56,14 @@ class YoutubePlayer extends React.Component {
       })
       .catch(err => alert(err));
     console.log(this.state.pins);
-    setTimeout(this.syncPins, 10000)
+    setTimeout(this.syncPins, 5000)
   }
 
   setPinID(pinID) {
     this.state.pinID = pinID;
     this.setState({ pinID: this.state.pinID });
     this.syncMessage();
+    this.pinIdJudge();
   }
 
   syncMessage = () => {
@@ -79,6 +81,17 @@ class YoutubePlayer extends React.Component {
       .catch(err => alert(err));
     console.log(this.state.messages);
     setTimeout(this.syncMessage, 10000)
+  }
+
+  pinIdJudge() {
+    if (this.state.pinID != null) {
+      this.state.pinMessageSum = this.state.pins[this.state.pinID].msgSum;
+      this.state.pinReactSum = this.state.pins[this.state.pinID].reactSum;
+    };
+    this.setState({
+      pinMessageSum: this.state.pinMessageSum,
+      pinReactSum: this.state.pinReactSum
+    });
   }
 
   render() {
@@ -116,25 +129,11 @@ class YoutubePlayer extends React.Component {
             </div>
             <hr className="seekBar" />
           </div>
-          <div className="pinHighLightAndButton">
-            <div className="pin">
-              {isPin == null &&
-                <PinHighLight
-                pinReact={0}
-                pinMsgLength={0}
-                />
-              }
-              {isPin != null &&
-                <PinHighLight
-                pinReact={this.state.pins[this.state.pinID].reactSum}
-                pinMsgLength={this.state.pins[this.state.pinID].msgSum}
-                />
-              }
-              <PinController
-                getVideoTime={() => Math.round(this.state.videoEl.target.getCurrentTime())}
-                addPin={(time) => this.addPin(time)}
+            <div className="pinHighLightAndButton">
+              <PinHighLight
+                pinMessageSum={this.state.pinMessageSum}
+                pinReactSum={this.state.pinReactSum}
               />
-            </div>
           </div>
         </div>
         <div className="rightSection">

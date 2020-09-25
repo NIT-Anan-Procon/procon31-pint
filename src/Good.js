@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import heart1 from './image/heart1.png'
-import heart2 from './image/heart2.png'
+
+import HeartDefault from './image/HeartDefault.png'
+import HeartClicked from './image/HeartClicked.png'
 
 class Good extends React.Component {
 	constructor(props) {
@@ -12,23 +13,20 @@ class Good extends React.Component {
             messageID: this.props.messageID
         }
     }
-    
-  
+
     addGood = () => {
         const params = new URLSearchParams();
         params.append('messageID',this.state.messageID);
         axios
-          .post("http://procon31-server.ddns.net/API/ReactSend.php",params)
-          .then(res => {
-            console.log(res)
-          })
-          .catch(err => alert(err));
+            .post("http://procon31-server.ddns.net/API/ReactSend.php",params)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => alert(err));
     }
 
     goodClick = () => {
-        {
-            document.getElementById(this.state.messageID).src = heart2;
-        };
+        {document.getElementById(this.state.messageID).src = HeartClicked;};
 
         this.setState({ 
             liked: true,
@@ -37,36 +35,23 @@ class Good extends React.Component {
         this.addGood();
     };
 
-    render(){
+    goodJudge() {
         const isGood = this.state.count;
+        if(this.state.count == 0) {
+            return HeartDefault
+        }
+        if (this.state.count > 0) {
+            return HeartClicked
+        }
+    }
+
+    render(){
         return (
-            <div>
-                {isGood > 0 &&
-                    <>
-                    <img src={heart2} id={this.state.messageID} clssName="LikesIcon-fa-heart" onClick={this.goodClick} 
-                        style={
-                            {
-                                width: "32px",
-                                height: "32px"
-                            }
-                        }
-                    />
+            <div className="good">
+                <img src={this.goodJudge()} id={this.state.messageID} className="goodIcon" onClick={this.goodClick} />
+                <div className="goodCount">
                     {this.state.count}
-                </>
-                } 
-                {isGood == 0 &&
-                    <>
-                    <img src={heart1} id={this.state.messageID} clssName="LikesIcon-fa-heart" onClick={this.goodClick} 
-                        style={
-                            {
-                                width: "32px",
-                                height: "32px"
-                            }
-                        }
-                    />
-                    {this.state.count}
-                    </>
-                }
+                </div>
             </div>
         )
     }

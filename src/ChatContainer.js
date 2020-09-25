@@ -3,11 +3,11 @@ import React from "react";
 import Message from "./Message";
 import InputContainer from "./InputContainer";
 
+export const InsertID = React.createContext()
+
 class ChatContainer extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-		}
 	}
 
 	render() {
@@ -21,13 +21,17 @@ class ChatContainer extends React.Component {
 						<div>
 							{this.props.messages.map((message, index) => {
 								return (
-									<Message
-										key={index}
-										messageID={index}
-										reactNum={message.reactNum}
-										message={message.msg}
-										user={message.userName}
-									/>
+									<InsertID.Provider value={null}>
+										<Message
+											key={index}
+											messageID={index}
+											groupID={message.msgGroup}
+											sendTime={message.msgTime}
+											user={message.userName}
+											message={message.msg}
+											reactNum={message.reactNum}
+										/>
+									</InsertID.Provider>
 								)
 							})}
 						</div>
