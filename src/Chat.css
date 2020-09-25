@@ -1,0 +1,73 @@
+/* チャットのタイトル */
+
+.chatTitleBox{
+	height: 60px;
+
+	background: #FE5600;
+	border-radius: 5px;
+
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	color: #FFFFFF;
+}
+
+/* チャット */
+
+.chatContainer{
+	height: 765px;
+	margin-top: 5px;
+	
+	border: 2px solid #A9D18E;
+	border-radius: 5px;
+}
+
+.messageContainer {
+	height: 710px;
+	margin: 5px;
+
+	background: #F9F9F9;
+	overflow: auto;
+  }
+
+.message {
+	margin: 3px;
+	border: 1px solid black;
+}
+
+/* チャット入力欄 */
+
+.inputContainer {
+	margin: 0px 5px 5px 5px;
+}
+  
+.inputField {
+	width: 285px;
+	height: 40px;
+  
+	border: 2px solid #A9D18E;
+	box-sizing: border-box;
+	border-radius: 3px;
+
+	float: left;
+}
+
+.sendButton {
+	width: 84px;
+	height: 40px;
+	background: #FE5600;
+	border-radius: 5px;
+
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+	text-align: center;
+	color: #FFFFFF;
+
+	float: right;
+}
+
