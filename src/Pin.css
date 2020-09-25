@@ -1,0 +1,128 @@
+/* ピンが入っている箱 */
+
+.pinBox{
+	overflow: hidden;
+	position: relative;
+	margin-top: 23px;
+
+	width: 960px;
+	height: 80px;
+
+	background: #A9D18E;
+	border-radius: 5px;
+}
+
+.pin {
+	overflow: hidden;
+	display: flex;
+}
+
+.pins{
+	transition-property: transform;
+	transition-duration: 0.5s;
+}
+
+.pins:hover{
+	transform:scale(1.2,1.2);
+}
+
+.seekBar{
+	position: absolute;
+	overflow: hidden;
+	bottom: 10px;
+	height: 5px;
+	width: 936px;
+	background-color: #FE5600;
+	border: none;
+	margin: 0px 12px;
+}
+
+/* ピンのハイライト */
+
+.pinHighLightAndButton {
+	overflow: hidden;
+	margin-top: 30px;
+}
+
+.pinHighLightAndInformation {
+	width: 780px;
+	height: 150px;
+
+	border: 3px solid #A9D18E;
+	border-radius: 10px;
+	float:left;
+}
+
+.pinHighLightTitle{
+	width: 180px;
+	border-bottom: 3px solid #FE5600;
+
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 27px;
+
+	color: #4B4B4B;
+}
+
+.pinHighLight {
+	margin: 15px 0px 15px 15px;
+	width: 365px;
+	float: left;
+}
+
+.pinInfomation {
+	margin: 15px;
+	width: 365px;
+	float: right;
+}
+
+.pinCommentTotal {
+	overflow: hidden;
+	display: flex;
+
+	margin-top: 15px;
+}
+
+.pinGoodTotal {
+	overflow: hidden;
+	display: flex;
+
+	margin-top: 15px;
+}
+
+.description {
+	margin-left: 15px;
+
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 27px;
+
+	color: #4B4B4B;
+}
+
+/* ピンを追加するボタン */
+
+.pinButton{
+	float: right;
+	overflow: hidden;
+	position: relative;
+	width: 150px;
+	height: 150px;
+	cursor: pointer;
+	border-radius: 50%;
+	background-color: #FE5600;
+}
+
+.pinButtonImage {
+	width: 68px;
+	height: 100px;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+}

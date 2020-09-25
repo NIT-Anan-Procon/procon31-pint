@@ -36,15 +36,10 @@ class InputContainer extends React.Component {
 					type="text"
 					value={this.state.value}
 					onChange={this.handleChange}
-					className="messageField"
+					className="inputField"
 				/>
-				<button
-					onClick={this.sendMessage}
-					className="sendButton"
-				>
-					<div className="soushin">
-						送信
-					</div>
+				<button onClick={this.sendMessage} className="sendButton">
+					送信
 				</button>
 			</div>
 		);

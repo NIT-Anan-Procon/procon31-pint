@@ -22,9 +22,9 @@ class Pin extends React.Component{
 	}
 	
 	pinSize(msgleng){
-		if(msgleng<=5) 			 return 30;
-		else if(msgleng<=10) return 40;
-		else 								 return 50;
+		if(msgleng<=5)			return 30;
+		else if(msgleng<=10)	return 40;
+		else					return 50;
 	}
 
 	render() {
