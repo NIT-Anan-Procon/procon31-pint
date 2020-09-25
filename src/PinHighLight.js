@@ -1,11 +1,20 @@
 import React from 'react';
 
 class PinHighLight extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      good: 0
+    }
+  }
+
   render(){
+    const maxGood = 0;
     return(
       <div className="pinHighLightAndInformation">
         <div className="pinHighLight">
           <div className="pinHighLightTitle">ピンのハイライト</div>
+            
         </div>
         <div className="pinInfomation">
           <div className="pinHighLightTitle">ピンの情報</div>
@@ -17,7 +26,7 @@ class PinHighLight extends React.Component{
               コメント
             </div>
             <div className="description">
-              test
+              {this.props.pinMsgLength}
             </div>
           </div>
           <div className="pinGoodTotal">
@@ -28,7 +37,7 @@ class PinHighLight extends React.Component{
               いいね！
             </div>
             <div className="description">
-              test
+              {this.props.pinReact}
             </div>
           </div>
         </div>
