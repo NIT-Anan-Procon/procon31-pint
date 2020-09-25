@@ -116,7 +116,9 @@ class YoutubePlayer extends React.Component {
           </div>
           <div className="pinHighLightAndButton">
             <PinHighLight />
-            <PinController />
+            <PinController
+              getVideoTime={() => Math.round(this.state.videoEl.target.getCurrentTime())}
+            />
           </div>
         </div>
         <div className="rightSection">
@@ -126,13 +128,6 @@ class YoutubePlayer extends React.Component {
             syncMessage={this.syncMessage}
           />
         </div>
-        {/* 試行錯誤中 */}
-        <PinController
-          getVideoTime={() => Math.round(this.state.videoEl.target.getCurrentTime())}
-          addPin={(time) => this.addPin(time)}
-        />
-        {/* 試行錯誤中 */}
-
       </div>
       </>
     );
