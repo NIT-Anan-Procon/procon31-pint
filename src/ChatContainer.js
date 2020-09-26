@@ -45,7 +45,7 @@ class ChatContainer extends React.Component {
 							})}
 						</div>
 					</div>
-					<InputContainer 
+					<InputContainer
 						pinID={this.props.pinID}
 						replyID={this.state.replyID}
 						syncMessage={this.props.syncMessage}

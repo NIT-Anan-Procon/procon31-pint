@@ -26,10 +26,10 @@ class InputContainer extends React.Component {
 	sendMessage() {
 		const params = new URLSearchParams();
 		params.append('PinID', this.props.pinID);
-		if (this.props.replyID != null){
+		if (this.props.replyID != null) {
 			params.append('MessageID', this.props.replyID);
 		}
-		params.append('Message', this.state.value );
+		params.append('Message', this.state.value);
 		axios
 			.post("http://procon31-server.ddns.net/API/ChatSend.php", params)
 			.then(res => {

@@ -16,11 +16,11 @@ class Message extends React.Component {
 					送信時間: {this.props.sendTime}
 				</div>
 				<div>
-					MessageID: {this.props.messageID}, 
+					MessageID: {this.props.messageID},
 					GroupID: {this.props.groupID}
 				</div>
 				<div className="reaction">
-					<Good 
+					<Good
 						messageID={this.props.messageID}
 						reactNum={this.props.reactNum}
 					/>
