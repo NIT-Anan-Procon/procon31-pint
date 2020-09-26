@@ -37,6 +37,7 @@ class InputContainer extends React.Component {
 				console.log(res);
 				this.props.syncMessage();
 				this.setState({ value: [] });
+				this.props.replyFinished();
 			})
 			.catch(err => alert(err));
 	}
