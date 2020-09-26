@@ -1,7 +1,5 @@
-import React,{useContext} from "react";
+import React from "react";
 import axios from "axios";
-
-import { InsertID } from './ChatContainer';
 
 class InputContainer extends React.Component {
 	constructor(props) {
@@ -26,7 +24,7 @@ class InputContainer extends React.Component {
 			.then(res => {
 				console.log(res);
 				this.props.syncMessage();
-				this.state.value = '';
+				this.setState({ value: [] });
 			})
 			.catch(err => alert(err));
 	}

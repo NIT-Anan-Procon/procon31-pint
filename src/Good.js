@@ -26,7 +26,7 @@ class Good extends React.Component {
     }
 
     goodClick = () => {
-        {document.getElementById(this.state.messageID).src = HeartClicked;};
+        document.getElementById(this.state.messageID).src = HeartClicked;
 
         this.setState({ 
             liked: true,
@@ -36,7 +36,7 @@ class Good extends React.Component {
     };
 
     goodJudge() {
-        if(this.state.count == 0) {
+        if(this.state.count === 0) {
             return HeartDefault
         }
         if (this.state.count > 0) {
@@ -47,7 +47,7 @@ class Good extends React.Component {
     render(){
         return (
             <div className="good">
-                <img src={this.goodJudge()} id={this.state.messageID} className="goodIcon" onClick={this.goodClick} />
+                <img src={this.goodJudge()} alt="いいね" id={this.state.messageID} className="goodIcon" onClick={this.goodClick} />
                 <div className="goodCount">
                     {this.state.count}
                 </div>

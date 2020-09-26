@@ -6,10 +6,6 @@ import InputContainer from "./InputContainer";
 export const InsertID = React.createContext()
 
 class ChatContainer extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		return (
 			<div>
