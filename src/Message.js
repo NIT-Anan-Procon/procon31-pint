@@ -3,12 +3,6 @@ import React from "react";
 import Good from "./Good";
 
 class Message extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-        }
-	}
-
 	render() {
 		return (
 			<div className="message">
@@ -30,7 +24,7 @@ class Message extends React.Component {
 						messageID={this.props.messageID}
 						reactNum={this.props.reactNum}
 					/>
-					<div className="reply">
+					<div className="reply" onClick={() => this.props.replyClicked(this.props.messageID)}>
 						返信
 					</div>
 				</div>

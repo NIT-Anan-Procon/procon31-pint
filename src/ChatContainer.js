@@ -6,6 +6,17 @@ import InputContainer from "./InputContainer";
 export const InsertID = React.createContext()
 
 class ChatContainer extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			replyID: null,
+		};
+	}
+
+	replyClicked(messageID) {
+		this.setState({ replyID: messageID });
+	}
+
 	render() {
 		return (
 			<div>
@@ -26,6 +37,7 @@ class ChatContainer extends React.Component {
 											user={message.userName}
 											message={message.msg}
 											reactNum={message.reactNum}
+											replyClicked={(ID) => this.replyClicked(ID)}
 										/>
 									</InsertID.Provider>
 								)
@@ -34,6 +46,7 @@ class ChatContainer extends React.Component {
 					</div>
 					<InputContainer 
 						pinID={this.props.pinID}
+						replyID={this.state.replyID}
 						syncMessage={this.props.syncMessage}
 					/>
 				</div>
