@@ -14,6 +14,7 @@ import './YoutubePlayer.css';
 import './Pin.css'
 import './Chat.css';
 import './Login.css';   //ログイン画面のcss
+import PinController from './PinController';
 
 class YoutubePlayer extends React.Component {
   constructor(props) {
@@ -163,6 +164,9 @@ class YoutubePlayer extends React.Component {
                 pinMessageSum={this.state.pinMessageSum}
                 pinReactSum={this.state.pinReactSum}
               />
+          </div>
+          <div>
+
           </div>
         </div>
         <div className="rightSection">
