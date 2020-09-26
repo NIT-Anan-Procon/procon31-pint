@@ -24,7 +24,7 @@ class InputContainer extends React.Component {
 			.then(res => {
 				console.log(res);
 				this.props.syncMessage();
-				this.state.value = '';
+				this.setState({ value: [] });
 			})
 			.catch(err => alert(err));
 	}

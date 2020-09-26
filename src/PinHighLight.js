@@ -1,11 +1,12 @@
 import React from 'react';
 
 class PinHighLight extends React.Component{
-  render(){
+  render() {
     return(
       <div className="pinHighLightAndInformation">
         <div className="pinHighLight">
           <div className="pinHighLightTitle">ピンのハイライト</div>
+            
         </div>
         <div className="pinInfomation">
           <div className="pinHighLightTitle">ピンの情報</div>
@@ -17,7 +18,7 @@ class PinHighLight extends React.Component{
               コメント
             </div>
             <div className="description">
-              test
+              {this.props.pinMessageSum}
             </div>
           </div>
           <div className="pinGoodTotal">
@@ -28,7 +29,7 @@ class PinHighLight extends React.Component{
               いいね！
             </div>
             <div className="description">
-              test
+              {this.props.pinReactSum}
             </div>
           </div>
         </div>
