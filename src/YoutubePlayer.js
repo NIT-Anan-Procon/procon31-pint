@@ -15,6 +15,7 @@ import './YoutubePlayer.css';
 import './Pin.css'
 import './Chat.css';
 import './Login.css';   //ログイン画面のcss
+import PinController from './PinController';
 
 class YoutubePlayer extends React.Component {
   constructor(props) {
@@ -185,6 +186,9 @@ class YoutubePlayer extends React.Component {
                 addPin={(time) => this.addPin(time)}
                 getCurrentTime={() => Math.round(this.state.videoEl.target.getCurrentTime())}
               />
+          </div>
+          <div>
+
           </div>
         </div>
         <div className="rightSection">
