@@ -24,7 +24,7 @@ class ChatContainer extends React.Component {
 		return (
 			<div>
 				<div className="chatTitleBox">
-					test
+					{this.props.titleMessage}
 				</div>
 				<div className="chatContainer">
 					<div className="messageContainer">

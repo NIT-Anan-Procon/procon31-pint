@@ -23,6 +23,7 @@ class YoutubePlayer extends React.Component {
       pins: [],
       messages: [],
       replyMessages: [],
+      titleMessage: null,
       pinMessageSum: 0,
       pinReactSum: 0
     }
@@ -97,6 +98,12 @@ class YoutubePlayer extends React.Component {
         }, ()=> {
             this.checkReplyMessages();
         });
+        for (let key in this.state.messages) {
+          if (this.state.messages[key] !== null) {
+            this.setState({ titleMessage: this.state.messages[key].msg });
+            break;
+          }
+        }
       })
       .catch(err => alert(err));
     console.log(this.state.messages);
@@ -108,7 +115,12 @@ class YoutubePlayer extends React.Component {
       this.setState({
         pinMessageSum: this.state.pins[this.state.pinID].msgSum,
         pinReactSum: this.state.pins[this.state.pinID].reactSum
-      });
+      }, () => {
+        if (this.state.pinMessageSum === "0") {
+            this.setState({ titleMessage: null });
+        }
+      }
+      );
     }
   }
 
@@ -157,6 +169,7 @@ class YoutubePlayer extends React.Component {
             pinID={this.state.pinID}
             messages={this.state.messages}
             replyMessages={this.state.replyMessages}
+            titleMessage={this.state.titleMessage}
             syncMessage={this.syncMessage}
           />
         </div>
