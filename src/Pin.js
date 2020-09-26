@@ -7,9 +7,15 @@ class Pin extends React.Component{
 		super(props);
 	}
 
+	colorOfTime(pintime){
+		if(pintime==0) return 1;
+		else return 112;
+	}
+
 	colorOfReaction(reactsum){
-		if(reactsum>=0) return Math.log(reactsum+1)*30;
-		else return 0;
+		const ret=10000-Math.log(reactsum+1)*2000
+		if(ret>=100) return ret;
+		else return 100;
 	}
 
 	seekPinTime(time) {
@@ -44,7 +50,7 @@ class Pin extends React.Component{
 					}
 				}
 			>
-				<img className="pins" src={pinimage} alt="" width={this.pinSize(this.props.pinMsgLength)} height={this.pinSize(this.props.pinMsgLength)} color="#ffff00"/>
+				<img style={{filter: "invert(15%) sepia(95%) saturate(6932%) hue-rotate(320deg) brightness("+this.colorOfReaction(this.props.pinReact)+"%) contrast("+this.colorOfTime(this.props.pinTime)+"%)"}} className="pins" src={pinimage} alt="" width={this.pinSize(this.props.pinMsgLength)} height={this.pinSize(this.props.pinMsgLength)} />
 			</div>
 		)
 	}
