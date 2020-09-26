@@ -8,6 +8,7 @@ class ChatContainer extends React.Component {
 		super(props);
 		this.state = {
 			replyID: null,
+			replyMessages: []
 		};
 	}
 

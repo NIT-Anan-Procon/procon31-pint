@@ -22,6 +22,7 @@ class YoutubePlayer extends React.Component {
       pinID: null,
       pins: [],
       messages: [],
+      replyMessages: [],
       pinMessageSum: 0,
       pinReactSum: 0
     }
@@ -51,7 +52,7 @@ class YoutubePlayer extends React.Component {
       .then(res => {
         console.log(res)
         for (let key in res.data.PinArray) {
-          pins[key]=(res.data.PinArray[key]);
+          pins[key] = (res.data.PinArray[key]);
         }
         this.setState({ pins: pins });
       })
@@ -69,6 +70,17 @@ class YoutubePlayer extends React.Component {
     });
   }
 
+  checkReplyMessages = () => {
+    let replyMessages = [];
+    for (let key in this.state.messages) {
+      if (this.state.messages[key].msgGroup !== "0") {
+        replyMessages[key] = this.state.messages[key];
+        delete this.state.messages[key];
+      }
+    }
+    this.setState({ replyMessages: replyMessages });
+  }
+
   syncMessage = () => {
     let messages = [];
     const params = new URLSearchParams();
@@ -80,7 +92,11 @@ class YoutubePlayer extends React.Component {
         for (let key in res.data.MessageArray) {
           messages[key] = res.data.MessageArray[key]
         }
-        this.setState({ messages: messages });
+        this.setState({
+          messages: messages
+        }, ()=> {
+            this.checkReplyMessages();
+        });
       })
       .catch(err => alert(err));
     console.log(this.state.messages);
@@ -140,6 +156,7 @@ class YoutubePlayer extends React.Component {
           <ChatContainer
             pinID={this.state.pinID}
             messages={this.state.messages}
+            replyMessages={this.state.replyMessages}
             syncMessage={this.syncMessage}
           />
         </div>
