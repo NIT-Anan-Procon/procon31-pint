@@ -147,9 +147,6 @@ class YoutubePlayer extends React.Component {
           />
         </div>
       </div>
-      <div>
-        <Login />
-      </div>
       </>
     );
   }
