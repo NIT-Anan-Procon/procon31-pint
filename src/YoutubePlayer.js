@@ -151,7 +151,8 @@ class YoutubePlayer extends React.Component {
     return (
       <>
       <header>
-          <img src={PintLogo} alt="Pintロゴ" className="pintLogo"/>
+          <img src={PintLogo} alt="Pintロゴ" className="pintLogo" />
+          <a href="http://procon31-server.ddns.net/API/Logout.php" className="Logout">ログアウト</a>
       </header>
       <div className="all">
         <div className="leftSection">
