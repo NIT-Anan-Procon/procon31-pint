@@ -3,10 +3,6 @@ import React from 'react';
 import pinimage from './image/Pin.svg'
 
 class Pin extends React.Component{
-	constructor(props) {
-		super(props);
-	}
-
 	colorOfReaction(reactsum){
 		if(reactsum>=0) return Math.log(reactsum+1)*30;
 		else return 0;

@@ -4,7 +4,6 @@ import axios from 'axios';
 
 import Pin from "./Pin"
 import PinHighLight from "./PinHighLight";
-import PinController from "./PinController";
 import ChatContainer from "./ChatContainer";
 import Login from "./Login";
 
@@ -24,7 +23,9 @@ class YoutubePlayer extends React.Component {
       MovieID: 1,
       pinID: null,
       pins: [],
-      messages: []
+      messages: [],
+      pinMessageSum: 0,
+      pinReactSum: 0
     }
   }
 
@@ -43,17 +44,18 @@ class YoutubePlayer extends React.Component {
   }
 
   syncPins = () => {
+    let pins = [];
     const params = new URLSearchParams();
     params.append('MovieID', this.state.MovieID);
-    this.state.pins = [];
+    this.setState({ pins: [] });
     axios
       .post("http://procon31-server.ddns.net/API/PinGet.php", params)
       .then(res => {
         console.log(res)
         for (let key in res.data.PinArray) {
-          this.state.pins[key]=(res.data.PinArray[key]);
+          pins[key]=(res.data.PinArray[key]);
         }
-        this.setState({ pins: this.state.pins });
+        this.setState({ pins: pins });
       })
       .catch(err => alert(err));
     console.log(this.state.pins);
@@ -61,26 +63,39 @@ class YoutubePlayer extends React.Component {
   }
 
   setPinID(pinID) {
-    this.state.pinID = pinID;
-    this.setState({ pinID: this.state.pinID });
-    this.syncMessage();
+    this.setState({
+      pinID: pinID
+    }, () => {
+      this.syncMessage();
+      this.pinIdJudge();
+    });
   }
 
   syncMessage = () => {
+    let messages = [];
     const params = new URLSearchParams();
     params.append('PinID', this.state.pinID);
-    this.state.messages = [];
+    this.setState({ messages: [] });
     axios
       .post("http://procon31-server.ddns.net/API/ChatGet.php", params)
       .then(res => {
         for (let key in res.data.MessageArray) {
-          this.state.messages[key] = res.data.MessageArray[key]
+          messages[key] = res.data.MessageArray[key]
         }
-        this.setState({ messages: this.state.messages });
+        this.setState({ messages: messages });
       })
       .catch(err => alert(err));
     console.log(this.state.messages);
     setTimeout(this.syncMessage, 10000)
+  }
+
+  pinIdJudge() {
+    if (this.state.pinID != null) {
+      this.setState({
+        pinMessageSum: this.state.pins[this.state.pinID].msgSum,
+        pinReactSum: this.state.pins[this.state.pinID].reactSum
+      });
+    }
   }
 
   render() {
@@ -88,8 +103,6 @@ class YoutubePlayer extends React.Component {
       height: '540',
       width: '960',
     };
-
-    const isPin = this.state.pinID;
 
     return (
       <>
@@ -118,25 +131,11 @@ class YoutubePlayer extends React.Component {
             </div>
             <hr className="seekBar" />
           </div>
-          <div className="pinHighLightAndButton">
-            <div className="pin">
-              {isPin == null &&
-                <PinHighLight
-                pinReact={0}
-                pinMsgLength={0}
-                />
-              }
-              {isPin != null &&
-                <PinHighLight
-                pinReact={this.state.pins[this.state.pinID].reactSum}
-                pinMsgLength={this.state.pins[this.state.pinID].msgSum}
-                />
-              }
-              <PinController
-                getVideoTime={() => Math.round(this.state.videoEl.target.getCurrentTime())}
-                addPin={(time) => this.addPin(time)}
+            <div className="pinHighLightAndButton">
+              <PinHighLight
+                pinMessageSum={this.state.pinMessageSum}
+                pinReactSum={this.state.pinReactSum}
               />
-            </div>
           </div>
         </div>
         <div className="rightSection">
