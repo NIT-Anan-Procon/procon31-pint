@@ -26,7 +26,6 @@ class InputContainer extends React.Component {
 	sendMessage() {
 		const params = new URLSearchParams();
 		params.append('PinID', this.props.pinID);
-		params.append('MessageID', 96);
 		if (this.props.replyID != null){
 			params.append('MessageID', this.props.replyID);
 		}

@@ -3,6 +3,7 @@ import YouTube from 'react-youtube';
 import axios from 'axios';
 
 import Pin from "./Pin"
+import PinController from './PinController';
 import PinHighLight from "./PinHighLight";
 import ChatContainer from "./ChatContainer";
 // import Login from "./login";
@@ -19,8 +20,9 @@ class YoutubePlayer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      videoID: "M7lc1UVf-VE",
       videoEl: null,
-      MovieID: 1,
+      movieID: 1,
       pinID: null,
       pins: [],
       messages: [],
@@ -31,9 +33,23 @@ class YoutubePlayer extends React.Component {
     }
   }
 
+  // setVideoAndMovieID() {
+  //   const params = new URLSearchParams();
+  //   params.append('ID', ID);
+  //   axios
+  //     .post("url", params)
+  //     .then(res => {
+  //       this.setState({
+  //         videoID: res.data.,
+  //         movieID: res.data.
+  //       });
+  //     })
+  //     .catch(err => alert(err))
+  // }
+
   addPin(time) {
     const params = new URLSearchParams();
-    params.append('MovieID', this.state.MovieID);
+    params.append('MovieID', this.state.movieID);
     params.append('PinTime', time);
     axios
       .post("http://procon31-server.ddns.net/API/PinReg.php", params)
@@ -47,7 +63,7 @@ class YoutubePlayer extends React.Component {
   syncPins = () => {
     let pins = [];
     const params = new URLSearchParams();
-    params.append('MovieID', this.state.MovieID);
+    params.append('MovieID', this.state.movieID);
     this.setState({ pins: [] });
     axios
       .post("http://procon31-server.ddns.net/API/PinGet.php", params)
@@ -91,6 +107,7 @@ class YoutubePlayer extends React.Component {
     axios
       .post("http://procon31-server.ddns.net/API/ChatGet.php", params)
       .then(res => {
+        console.log(res);
         for (let key in res.data.MessageArray) {
           messages[key] = res.data.MessageArray[key]
         }
@@ -138,7 +155,7 @@ class YoutubePlayer extends React.Component {
       </header>
       <div className="all">
         <div className="leftSection">
-          <YouTube videoId={this.props.videoId} opts={opts} onReady={(event) => this._onReady(event)} />
+          <YouTube videoId={this.state.videoID} opts={opts} onReady={(event) => this._onReady(event)} />
           <div className="pinBox">
             <div className="pin">
               {this.state.pins.map((pin, index) => {
@@ -163,6 +180,10 @@ class YoutubePlayer extends React.Component {
                 pinMessageSum={this.state.pinMessageSum}
                 pinReactSum={this.state.pinReactSum}
               />
+              <PinController 
+                addPin={(time) => this.addPin(time)}
+                getCurrentTime={() => Math.round(this.state.videoEl.target.getCurrentTime())}
+              />
           </div>
         </div>
         <div className="rightSection">
@@ -180,6 +201,7 @@ class YoutubePlayer extends React.Component {
   }
 
   _onReady(event) {
+    // this.setVideoAndMovieID();
     this.setState({ videoEl: event });
     this.syncPins(this.state.MovieID);
   }
