@@ -3,12 +3,8 @@ import React from 'react';
 import pinimage from './image/Pin.svg'
 
 class Pin extends React.Component{
-	constructor(props) {
-		super(props);
-	}
-
 	colorOfTime(pintime){
-		if(pintime==0) return 1;
+		if (pintime === 0) return 1;
 		else return 112;
 	}
 

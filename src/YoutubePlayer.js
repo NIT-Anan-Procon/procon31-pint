@@ -5,7 +5,7 @@ import axios from 'axios';
 import Pin from "./Pin"
 import PinHighLight from "./PinHighLight";
 import ChatContainer from "./ChatContainer";
-import Login from "./Login";
+// import Login from "./login";
 
 import PintLogo from "./image/PintLogo.png";
 
@@ -33,7 +33,6 @@ class YoutubePlayer extends React.Component {
     const params = new URLSearchParams();
     params.append('MovieID', this.state.MovieID);
     params.append('PinTime', time);
-    // params.append('PinType', type);
     axios
       .post("http://procon31-server.ddns.net/API/PinReg.php", params)
       .then(res => {
