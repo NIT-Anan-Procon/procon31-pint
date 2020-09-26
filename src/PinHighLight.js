@@ -6,7 +6,15 @@ class PinHighLight extends React.Component {
 			<div className="pinHighLightAndInformation">
 				<div className="pinHighLight">
 					<div className="pinHighLightTitle">ピンのハイライト</div>
-
+					<div className="pinHighLightContents">
+						<div className="pinHighLightUser">
+							User
+						</div>
+						<div className="pinHighLightMessage">
+							本文
+						</div>
+					</div>
+					
 				</div>
 				<div className="pinInfomation">
 					<div className="pinHighLightTitle">ピンの情報</div>

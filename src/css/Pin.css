@@ -71,6 +71,36 @@
 	float: left;
 }
 
+.pinHighLightContents {
+	margin-top: 15px;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 27px;
+
+	color: #4B4B4B;
+}
+
+.pinHighLightUser {
+	height: 28;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 27px;
+
+	color: #3b3b3b;
+}
+
+.pinHighLightMessage {
+	margin-top: 15px;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 27px;
+
+	color: #4B4B4B;
+}
+
 .pinInfomation {
 	margin: 15px;
 	width: 365px;
