@@ -20,7 +20,7 @@ class YoutubePlayer extends React.Component {
 		this.state = {
 			videoID: "M7lc1UVf-VE",
 			videoEl: null,
-			movieID: 1,
+			movieID: 2,
 			pinID: null,
 			pins: [],
 			messages: [],
@@ -29,21 +29,22 @@ class YoutubePlayer extends React.Component {
 			pinMessageSum: 0,
 			pinReactSum: 0
 		}
+		this.setVideoID();
 	}
 
-	// setVideoAndMovieID() {
-	// 	const params = new URLSearchParams();
-	// 	params.append('ID', ID);
-	// 	axios
-	// 		.post("url", params)
-	// 		.then(res => {
-	// 			this.setState({
-	// 				videoID: res.data.,
-	// 				movieID: res.data.
-	//       		});
-	// 		})
-	// 		.catch(err => alert(err))
-	// }
+	setVideoID() {
+		const params = new URLSearchParams();
+		params.append('MovieID', this.state.movieID);
+		axios
+			.post("http://procon31-server.ddns.net/API/MovieGet.php", params)
+			.then(res => {
+				console.log(res);
+				this.setState({
+					videoID: res.data.PinArray.videoID
+	      		});
+			})
+			.catch(err => alert(err))
+	}
 
 	addPin(time) {
 		const params = new URLSearchParams();
