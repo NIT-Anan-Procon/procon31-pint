@@ -15,16 +15,28 @@ class InputContainer extends React.Component {
 		this.setState({ value: event.target.value });
 	}
 
+	setPlaceHolder() {
+		if (this.props.replyID == null) {
+			return "全体に送信";
+		} else {
+			return "ID:" + this.props.replyID + " に返信";
+		}
+	}
+
 	sendMessage() {
 		const params = new URLSearchParams();
 		params.append('PinID', this.props.pinID);
-		params.append('Message', this.state.value );
+		if (this.props.replyID != null) {
+			params.append('MessageID', this.props.replyID);
+		}
+		params.append('Message', this.state.value);
 		axios
 			.post("http://procon31-server.ddns.net/API/ChatSend.php", params)
 			.then(res => {
 				console.log(res);
 				this.props.syncMessage();
 				this.setState({ value: [] });
+				this.props.replyFinished();
 			})
 			.catch(err => alert(err));
 	}
@@ -37,6 +49,7 @@ class InputContainer extends React.Component {
 					value={this.state.value}
 					onChange={this.handleChange}
 					className="inputField"
+					placeholder={this.setPlaceHolder()}
 				/>
 				<button onClick={this.sendMessage} className="sendButton">
 					送信

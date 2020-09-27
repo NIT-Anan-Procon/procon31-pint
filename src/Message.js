@@ -3,12 +3,6 @@ import React from "react";
 import Good from "./Good";
 
 class Message extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-        }
-	}
-
 	render() {
 		return (
 			<div className="message">
@@ -22,15 +16,15 @@ class Message extends React.Component {
 					送信時間: {this.props.sendTime}
 				</div>
 				<div>
-					MessageID: {this.props.messageID}, 
+					MessageID: {this.props.messageID},
 					GroupID: {this.props.groupID}
 				</div>
 				<div className="reaction">
-					<Good 
+					<Good
 						messageID={this.props.messageID}
 						reactNum={this.props.reactNum}
 					/>
-					<div className="reply">
+					<div className="reply" onClick={() => this.props.replyClicked(this.props.messageID)}>
 						返信
 					</div>
 				</div>
