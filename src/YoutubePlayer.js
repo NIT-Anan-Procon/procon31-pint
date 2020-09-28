@@ -27,7 +27,8 @@ class YoutubePlayer extends React.Component {
 			replyMessages: [],
 			titleMessage: null,
 			pinMessageSum: 0,
-			pinReactSum: 0
+			pinReactSum: 0,
+			goodMaxMsg: null
 		}
 	}
 
@@ -52,7 +53,6 @@ class YoutubePlayer extends React.Component {
 		axios
 			.post("http://procon31-server.ddns.net/API/PinReg.php", params)
 			.then(res => {
-				console.log(res)
 				this.syncPins()
 			})
 			.catch(err => alert(err));
@@ -66,14 +66,12 @@ class YoutubePlayer extends React.Component {
 		axios
 			.post("http://procon31-server.ddns.net/API/PinGet.php", params)
 			.then(res => {
-				console.log(res)
 				for (let key in res.data.PinArray) {
 					pins[key] = (res.data.PinArray[key]);
 				}
 				this.setState({ pins: pins });
 			})
 			.catch(err => alert(err));
-		console.log(this.state.pins);
 		setTimeout(this.syncPins, 10000)
 	}
 
@@ -82,8 +80,7 @@ class YoutubePlayer extends React.Component {
 			pinID: pinID
 		}, () => {
 			this.syncMessage();
-      this.pinIdJudge();
-      this.setMaxMassage();
+      		this.pinIdJudge();
 		});
 	}
 
@@ -106,7 +103,6 @@ class YoutubePlayer extends React.Component {
 		axios
 			.post("http://procon31-server.ddns.net/API/ChatGet.php", params)
 			.then(res => {
-				console.log(res);
 				for (let key in res.data.MessageArray) {
 					messages[key] = res.data.MessageArray[key]
 				}
@@ -114,6 +110,7 @@ class YoutubePlayer extends React.Component {
 					messages: messages
 				}, () => {
 					this.checkReplyMessages();
+					this.setMaxMassage();
 				});
 				for (let key in this.state.messages) {
 					if (this.state.messages[key] !== null) {
@@ -123,7 +120,6 @@ class YoutubePlayer extends React.Component {
 				}
 			})
 			.catch(err => alert(err));
-		console.log(this.state.messages);
 		setTimeout(this.syncMessage, 10000)
   }
 
@@ -135,12 +131,15 @@ class YoutubePlayer extends React.Component {
     axios
     .post("http://procon31-server.ddns.net/API/BestReactGet.php", params)
     .then(res => {
-      console.log(res)
-      goodMaxMsg = this.state.messages[res.data.msgId].msg
-      this.setState({goodMaxMsg: goodMaxMsg})
+		console.log(res.data.msgId);
+		if(res.data.Result === true){
+    		goodMaxMsg = this.state.messages[res.data.msgId].msg
+			this.setState({goodMaxMsg: goodMaxMsg})
+		} else {
+			this.setState({goodMaxMsg: null})
+		}
     })
     .catch(err => alert(err));
-    console.log(this.state.messages);
   }
 
 	pinIdJudge() {
@@ -194,8 +193,8 @@ class YoutubePlayer extends React.Component {
 						<div className="pinHighLightAndButton">
 							<PinHighLight
 								pinMessageSum={this.state.pinMessageSum}
-                pinReactSum={this.state.pinReactSum}
-                message={this.state.goodMaxMsg}
+               					pinReactSum={this.state.pinReactSum}
+								message={this.state.goodMaxMsg}
 							/>
 							<PinController
 								addPin={(time) => this.addPin(time)}
