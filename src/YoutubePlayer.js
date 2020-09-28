@@ -103,6 +103,7 @@ class YoutubePlayer extends React.Component {
 		axios
 			.post("http://procon31-server.ddns.net/API/ChatGet.php", params)
 			.then(res => {
+				console.log(this.state.messages)
 				for (let key in res.data.MessageArray) {
 					messages[key] = res.data.MessageArray[key]
 				}
@@ -124,17 +125,22 @@ class YoutubePlayer extends React.Component {
   }
 
   setMaxMassage = () => {
-    let goodMaxMsg = [];
+	let goodMaxMsg = [];
+	let userName = [];
     const params = new URLSearchParams();
     params.append('PinID', this.state.pinID);
-    this.setState({ goodMaxMsg: [] });
+	this.setState({ goodMaxMsg: [] });
+	this.setState({ userName: []});
     axios
     .post("http://procon31-server.ddns.net/API/BestReactGet.php", params)
     .then(res => {
 		console.log(res.data.msgId);
+		console.log(this.state.messages[res.data.msgId].userName);
 		if(res.data.Result === true){
     		goodMaxMsg = this.state.messages[res.data.msgId].msg
 			this.setState({goodMaxMsg: goodMaxMsg})
+			userName = this.state.messages[res.data.msgId].userName
+			this.setState({userName: userName})
 		} else {
 			this.setState({goodMaxMsg: null})
 		}
@@ -195,6 +201,7 @@ class YoutubePlayer extends React.Component {
 								pinMessageSum={this.state.pinMessageSum}
                					pinReactSum={this.state.pinReactSum}
 								message={this.state.goodMaxMsg}
+								user={this.state.userName}
 							/>
 							<PinController
 								addPin={(time) => this.addPin(time)}
