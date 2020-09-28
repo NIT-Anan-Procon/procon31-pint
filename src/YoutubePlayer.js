@@ -31,48 +31,6 @@ class YoutubePlayer extends React.Component {
 		}
 	}
 
-	//URLパラメータを文字列で取得(?含む)
-	setMovieID() {
-		let urlParamStr = window.location.search
-
-		if (urlParamStr) {
-			//?を除去
-			urlParamStr = urlParamStr.substring(1)
-
-			let params = {}
-
-			//urlパラメータをオブジェクトにまとめる
-			urlParamStr.split('&').forEach(param => {
-				const temp = param.split('=')
-				//pramsオブジェクトにパラメータを追加
-				params = {
-					...params,
-					[temp[0]]: temp[1]
-				}
-			})
-			this.setState({
-				movieID: params.id
-			}, () => {
-					this.setVideoID();
-					this.syncPins(this.state.MovieID);
-			}
-			);
-		}
-	}
-
-	setVideoID() {
-		const params = new URLSearchParams();
-		params.append('MovieID', this.state.movieID);
-		axios
-			.post("http://procon31-server.ddns.net/API/MovieGet.php", params)
-			.then(res => {
-				this.setState({
-					videoID: res.data.PinArray.videoID
-				});
-			})
-			.catch(err => alert(err))
-	}
-
 	addPin(time) {
 		const params = new URLSearchParams();
 		params.append('MovieID', this.state.movieID);
@@ -179,6 +137,42 @@ class YoutubePlayer extends React.Component {
 		}
 	}
 
+	componentDidMount() {
+		let urlParamStr = window.location.search
+
+		if (urlParamStr) {
+			//?を除去
+			urlParamStr = urlParamStr.substring(1)
+
+			let params = {}
+
+			//urlパラメータをオブジェクトにまとめる
+			urlParamStr.split('&').forEach(param => {
+				const temp = param.split('=')
+				//pramsオブジェクトにパラメータを追加
+				params = {
+					...params,
+					[temp[0]]: temp[1]
+				}
+			})
+			this.setState({
+				movieID: params.id
+			}, () => {
+				const params = new URLSearchParams();
+				params.append('MovieID', this.state.movieID);
+				axios
+					.post("http://procon31-server.ddns.net/API/MovieGet.php", params)
+					.then(res => {
+						this.setState({
+							videoID: res.data.PinArray.videoID
+						});
+					})
+					.catch(err => alert(err))
+			}
+			);
+		}
+	}
+
 	render() {
 		const opts = {
 			height: '540',
@@ -243,8 +237,9 @@ class YoutubePlayer extends React.Component {
 	}
 
 	_onReady(event) {
-		this.setMovieID();
-		this.setState({ videoEl: event });
+		this.setState({ videoEl: event }, () => {
+			this.syncPins();
+		});
 	}
 }
 
