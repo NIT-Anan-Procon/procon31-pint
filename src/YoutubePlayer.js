@@ -85,6 +85,13 @@ class YoutubePlayer extends React.Component {
 				for (let key in res.data.MessageArray) {
 					messages[key] = res.data.MessageArray[key]
 				}
+				// messages.sort((a, b) => {
+				// 	if (a.index < b.index) return -1;
+				// 	if (a.index > b.index) return 1;
+				// 	if (a.msgGroup < b.msgGroup) return -1;
+				// 	if (a.msgGroup > b.msgGroup) return 1;
+				// 	return 0;
+				// });
 				this.setState({
 					messages: messages
 				}, () => {

@@ -34,15 +34,22 @@
 	overflow: auto;
   }
 
-.message {
+.messageBox {
 	margin: 3px;
 	background-color: #A9D18E;
 }
 
-.replyMessage {
+.replyMessageBox {
 	margin: 3px;
 	margin-left: 30px;
 	background-color: #f08d5c;
+}
+
+.text {
+	font-style: normal;
+	font-weight: bold;
+	font-size: 16px;
+	color: #0f0f0f;
 }
 
 .reaction {
@@ -64,7 +71,6 @@
 }
 
 .reply {
-	border: 1px solid #000;
 	cursor: pointer;
 	overflow: hidden;
 	display: flex;
