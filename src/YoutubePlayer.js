@@ -21,7 +21,7 @@ class YoutubePlayer extends React.Component {
 			videoID: "M7lc1UVf-VE",
 			videoEl: null,
 			movieID: 5,
-			pinID: null,
+			pinID: 75,
 			pins: [],
 			messages: [],
 			replyMessages: [],
@@ -55,7 +55,9 @@ class YoutubePlayer extends React.Component {
 				for (let key in res.data.PinArray) {
 					pins[key] = (res.data.PinArray[key]);
 				}
-				this.setState({ pins: pins });
+				this.setState({ pins: pins }, () => {
+					this.pinIdJudge()
+				});
 			})
 			.catch(err => alert(err));
 		setTimeout(this.syncPins, 10000)
@@ -68,17 +70,6 @@ class YoutubePlayer extends React.Component {
 			this.syncMessage();
 			this.pinIdJudge();
 		});
-	}
-
-	checkReplyMessages = () => {
-		let replyMessages = [];
-		for (let key in this.state.messages) {
-			if (this.state.messages[key].msgGroup !== "0") {
-				replyMessages[key] = this.state.messages[key];
-				delete this.state.messages[key];
-			}
-		}
-		this.setState({ replyMessages: replyMessages });
 	}
 
 	syncMessage = () => {
@@ -97,7 +88,7 @@ class YoutubePlayer extends React.Component {
 				this.setState({
 					messages: messages
 				}, () => {
-					this.checkReplyMessages();
+					console.log(this.state.messages)
 					this.setMaxMassage();
 				});
 				for (let key in this.state.messages) {
@@ -208,6 +199,7 @@ class YoutubePlayer extends React.Component {
 		// this.setVideoAndMovieID();
 		this.setState({ videoEl: event });
 		this.syncPins(this.state.MovieID);
+		this.syncMessage();
 	}
 }
 
