@@ -20,7 +20,7 @@ class YoutubePlayer extends React.Component {
 		this.state = {
 			videoID: "M7lc1UVf-VE",
 			videoEl: null,
-			movieID: 1,
+			movieID: 5,
 			pinID: null,
 			pins: [],
 			messages: [],
@@ -67,7 +67,6 @@ class YoutubePlayer extends React.Component {
 		}, () => {
 			this.syncMessage();
 			this.pinIdJudge();
-			this.setMaxMassage();
 		});
 	}
 
@@ -91,6 +90,7 @@ class YoutubePlayer extends React.Component {
 		axios
 			.post("http://procon31-server.ddns.net/API/ChatGet.php", params)
 			.then(res => {
+				console.log(res)
 				for (let key in res.data.MessageArray) {
 					messages[key] = res.data.MessageArray[key]
 				}
@@ -98,6 +98,7 @@ class YoutubePlayer extends React.Component {
 					messages: messages
 				}, () => {
 					this.checkReplyMessages();
+					this.setMaxMassage();
 				});
 				for (let key in this.state.messages) {
 					if (this.state.messages[key] !== null) {
@@ -118,8 +119,10 @@ class YoutubePlayer extends React.Component {
 		axios
 			.post("http://procon31-server.ddns.net/API/BestReactGet.php", params)
 			.then(res => {
-				goodMaxMsg = this.state.messages[res.data.msgId].msg
-				this.setState({ goodMaxMsg: goodMaxMsg })
+				if (res.data.Result === "true") {
+					goodMaxMsg = this.state.messages[res.data.msgId].msg
+					this.setState({ goodMaxMsg: goodMaxMsg })
+				}
 			})
 			.catch(err => alert(err));
 	}

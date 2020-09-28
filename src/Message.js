@@ -1,16 +1,16 @@
 import React from "react";
 
 import Good from "./Good";
-import ReplyMessage from "./ReplyMessage";
+// import ReplyMessage from "./ReplyMessage";
 
 class Message extends React.Component {
 	render() {
 		return (
 			<div className="message" >
-				<div id="user">
+				<div>
 					ユーザー: {this.props.user}
 				</div>
-				<div id="message">
+				<div>
 					本文: {this.props.message}
 				</div>
 				<div>
@@ -30,25 +30,7 @@ class Message extends React.Component {
 					</div>
 				</div>
 				<div>
-					{this.props.replyMessages.map((message, index) => {
-						for (let i = 0; i < this.props.replyMessages.length; i++) {
-							if (this.props.replyMessages[i] !== undefined) {
-								if (String(this.props.messageID) === this.props.replyMessages[i].msgGroup) {
-									return (
-										<ReplyMessage
-											key={index}
-											messageID={index}
-											groupID={message.msgGroup}
-											sendTime={message.msgTime}
-											user={message.userName}
-											message={message.msg}
-											reactNum={message.reactNum}
-										/>
-									)
-								}
-							}
-						}
-					})}
+					
 				</div>
 			</div>
 		);

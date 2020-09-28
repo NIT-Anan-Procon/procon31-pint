@@ -6,10 +6,10 @@ class ReplyMessage extends React.Component {
 	render() {
 		return (
 			<div className="replyMessage">
-				<div id="user">
+				<div>
 					ユーザー: {this.props.user}
 				</div>
-				<div id="message">
+				<div>
 					本文: {this.props.message}
 				</div>
 				<div>
