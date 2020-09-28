@@ -36,7 +36,13 @@
 
 .message {
 	margin: 3px;
-	border: 1px solid black;
+	background-color: #A9D18E;
+}
+
+.replyMessage {
+	margin: 3px;
+	margin-left: 30px;
+	background-color: #f08d5c;
 }
 
 .reaction {

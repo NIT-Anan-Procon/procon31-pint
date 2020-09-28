@@ -38,7 +38,6 @@ class YoutubePlayer extends React.Component {
 		axios
 			.post("http://procon31-server.ddns.net/API/PinReg.php", params)
 			.then(res => {
-				console.log(res)
 				this.syncPins()
 			})
 			.catch(err => alert(err));
@@ -46,21 +45,19 @@ class YoutubePlayer extends React.Component {
 
 	syncPins = () => {
 		let pins = [];
-		clearTimeout();
+		clearTimeout(this.syncPins);
 		const params = new URLSearchParams();
 		params.append('MovieID', this.state.movieID);
 		this.setState({ pins: [] });
 		axios
 			.post("http://procon31-server.ddns.net/API/PinGet.php", params)
 			.then(res => {
-				console.log(res)
 				for (let key in res.data.PinArray) {
 					pins[key] = (res.data.PinArray[key]);
 				}
 				this.setState({ pins: pins });
 			})
 			.catch(err => alert(err));
-		console.log(this.state.pins);
 		setTimeout(this.syncPins, 10000)
 	}
 
@@ -87,14 +84,13 @@ class YoutubePlayer extends React.Component {
 
 	syncMessage = () => {
 		let messages = [];
-		clearTimeout();
+		clearTimeout(this.syncMessage);
 		const params = new URLSearchParams();
 		params.append('PinID', this.state.pinID);
 		this.setState({ messages: [] });
 		axios
 			.post("http://procon31-server.ddns.net/API/ChatGet.php", params)
 			.then(res => {
-				console.log(res);
 				for (let key in res.data.MessageArray) {
 					messages[key] = res.data.MessageArray[key]
 				}
@@ -111,7 +107,6 @@ class YoutubePlayer extends React.Component {
 				}
 			})
 			.catch(err => alert(err));
-		console.log(this.state.messages);
 		setTimeout(this.syncMessage, 10000)
 	}
 
@@ -123,12 +118,10 @@ class YoutubePlayer extends React.Component {
 		axios
 			.post("http://procon31-server.ddns.net/API/BestReactGet.php", params)
 			.then(res => {
-				console.log(res)
 				goodMaxMsg = this.state.messages[res.data.msgId].msg
 				this.setState({ goodMaxMsg: goodMaxMsg })
 			})
 			.catch(err => alert(err));
-		console.log(this.state.messages);
 	}
 
 	pinIdJudge() {

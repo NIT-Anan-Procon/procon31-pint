@@ -40,6 +40,7 @@ class ChatContainer extends React.Component {
 										message={message.msg}
 										reactNum={message.reactNum}
 										replyClicked={(ID) => this.replyClicked(ID)}
+										replyMessages={this.props.replyMessages}
 									/>
 								)
 							})}
