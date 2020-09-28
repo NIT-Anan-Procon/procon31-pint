@@ -28,7 +28,8 @@ class YoutubePlayer extends React.Component {
 			titleMessage: null,
 			pinMessageSum: 0,
 			pinReactSum: 0,
-			goodMaxMsg: null
+			goodMaxMsg: null,
+			userName: null
 		}
 	}
 
@@ -134,15 +135,17 @@ class YoutubePlayer extends React.Component {
     axios
     .post("http://procon31-server.ddns.net/API/BestReactGet.php", params)
     .then(res => {
-		console.log(res.data.msgId);
-		console.log(this.state.messages[res.data.msgId].userName);
+		//console.log(res.data.msgId);
+		console.log(res);
 		if(res.data.Result === true){
+			console.log(this.state.messages[res.data.msgId].msg.length);
     		goodMaxMsg = this.state.messages[res.data.msgId].msg
 			this.setState({goodMaxMsg: goodMaxMsg})
 			userName = this.state.messages[res.data.msgId].userName
 			this.setState({userName: userName})
 		} else {
 			this.setState({goodMaxMsg: null})
+			this.setState({userName: null})
 		}
     })
     .catch(err => alert(err));
