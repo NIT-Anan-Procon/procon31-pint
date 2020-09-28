@@ -33,7 +33,6 @@ class InputContainer extends React.Component {
 		axios
 			.post("http://procon31-server.ddns.net/API/ChatSend.php", params)
 			.then(res => {
-				console.log(res);
 				this.props.syncMessage();
 				this.setState({ value: [] });
 				this.props.replyFinished();

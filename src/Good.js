@@ -19,9 +19,6 @@ class Good extends React.Component {
 		params.append('messageID', this.state.messageID);
 		axios
 			.post("http://procon31-server.ddns.net/API/ReactSend.php", params)
-			.then(res => {
-				console.log(res)
-			})
 			.catch(err => alert(err));
 	}
 
