@@ -20,8 +20,6 @@ class Message extends React.Component {
 					<div className="message">
 						{this.props.message}
 					</div>
-					<div className="id">
-					</div>
 					<div className="reaction">
 						<Good
 							messageID={this.props.messageID}

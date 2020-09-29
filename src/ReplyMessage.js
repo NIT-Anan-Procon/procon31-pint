@@ -7,10 +7,16 @@ class ReplyMessage extends React.Component {
 		return (
 			<div className="replyMessageBox">
 				<div className="text">
-					<div className="replyUser">
-						{this.props.user}: {this.props.message}
+					<div className="head">
+						<div className="replyUser">
+							{this.props.user}
+						</div>
+						<div className="date">
+							{this.props.sendTime}
+						</div>
 					</div>
 					<div className="message">
+						{this.props.message}
 					</div>
 					<div className="date">
 						{this.props.sendTime}
