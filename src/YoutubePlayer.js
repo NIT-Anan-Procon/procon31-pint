@@ -26,9 +26,55 @@ class YoutubePlayer extends React.Component {
 			messages: [],
 			replyMessages: [],
 			titleMessage: null,
+			highLightMessage: null,
+			highLightUser: null,
 			pinMessageSum: 0,
 			pinReactSum: 0
 		}
+	}
+
+	syncPins = () => {
+		let pins = [];
+		clearTimeout(this.syncPins);
+		const params = new URLSearchParams();
+		params.append('MovieID', this.state.movieID);
+		this.setState({ pins: [] });
+		axios
+			.post("http://procon31-server.ddns.net/API/PinGet.php", params)
+			.then(res => {
+				for (let key in res.data.PinArray) {
+					pins[key] = (res.data.PinArray[key]);
+				}
+				this.setState({
+					pins: pins
+				}, () => {
+					this.initialSetPin()
+				});
+			})
+			.catch(err => alert(err));
+		setTimeout(this.syncPins, 10000)
+	}
+
+	initialSetPin() {
+		if (this.state.pinID != null) {
+			this.setState({
+				pinMessageSum: this.state.pins[this.state.pinID].msgSum,
+				pinReactSum: this.state.pins[this.state.pinID].reactSum
+			}, () => {
+				if (this.state.pinMessageSum == 0) {
+					this.setState({ titleMessage: null });
+				}
+			});
+		}
+	}
+
+	setPinID(pinID) {
+		this.setState({
+			pinID: pinID
+		}, () => {
+			this.syncMessage();
+			this.initialSetPin();
+		});
 	}
 
 	addPin(time) {
@@ -43,61 +89,33 @@ class YoutubePlayer extends React.Component {
 			.catch(err => alert(err));
 	}
 
-	syncPins = () => {
-		let pins = [];
-		const params = new URLSearchParams();
-		params.append('MovieID', this.state.movieID);
-		this.setState({ pins: [] });
-		axios
-			.post("http://procon31-server.ddns.net/API/PinGet.php", params)
-			.then(res => {
-				for (let key in res.data.PinArray) {
-					pins[key] = (res.data.PinArray[key]);
-				}
-				this.setState({ pins: pins });
-			})
-			.catch(err => alert(err));
-		setTimeout(this.syncPins, 10000)
-	}
-
-	setPinID(pinID) {
-		this.setState({
-			pinID: pinID
-		}, () => {
-			this.syncMessage();
-			this.pinIdJudge();
-			this.setMaxMassage();
-		});
-	}
-
-	checkReplyMessages = () => {
-		let replyMessages = [];
-
-		for (let key in this.state.messages) {
-			if (this.state.messages[key].msgGroup !== "0") {
-				replyMessages[key] = this.state.messages[key];
-				delete this.state.messages[key];
-			}
-		}
-		this.setState({ replyMessages: replyMessages });
-	}
-
 	syncMessage = () => {
 		let messages = [];
+		clearTimeout(this.syncMessage);
 		const params = new URLSearchParams();
 		params.append('PinID', this.state.pinID);
-		this.setState({ messages: [] });
 		axios
 			.post("http://procon31-server.ddns.net/API/ChatGet.php", params)
 			.then(res => {
 				for (let key in res.data.MessageArray) {
 					messages[key] = res.data.MessageArray[key]
 				}
-				this.setState({
-					messages: messages
-				}, () => {
-					this.checkReplyMessages();
+				messages.sort((a, b) => {
+					if (a.msgGroup < b.msgGroup) return -1;
+					if (a.msgGroup > b.msgGroup) return 1;
+					return 0;
 				});
+				if (Number(this.state.messages.length) != Number(messages.length)) {
+					this.setState({
+						messages: []
+					}, () => {
+						this.setState({
+							messages: messages
+						}, () => {
+							this.setHighLightMassage();
+						})
+					});
+				}
 				for (let key in this.state.messages) {
 					if (this.state.messages[key] !== null) {
 						this.setState({ titleMessage: this.state.messages[key].msg });
@@ -109,32 +127,25 @@ class YoutubePlayer extends React.Component {
 		setTimeout(this.syncMessage, 10000)
 	}
 
-	setMaxMassage = () => {
-		let goodMaxMsg = [];
+	setHighLightMassage = () => {
 		const params = new URLSearchParams();
 		params.append('PinID', this.state.pinID);
 		this.setState({ goodMaxMsg: [] });
 		axios
 			.post("http://procon31-server.ddns.net/API/BestReactGet.php", params)
 			.then(res => {
-				goodMaxMsg = this.state.messages[res.data.msgId].msg
-				this.setState({ goodMaxMsg: goodMaxMsg })
+				if (res.data.Result) {
+					for (let key in this.state.messages) {
+						if (this.state.messages[key].msgId == res.data.msgId) {
+							this.setState({
+								highLightMessage: this.state.messages[key].msg,
+								highLightUser: this.state.messages[key].userName
+							});
+						}
+					}
+				}
 			})
 			.catch(err => alert(err));
-	}
-
-	pinIdJudge() {
-		if (this.state.pinID != null) {
-			this.setState({
-				pinMessageSum: this.state.pins[this.state.pinID].msgSum,
-				pinReactSum: this.state.pins[this.state.pinID].reactSum
-			}, () => {
-				if (this.state.pinMessageSum === "0") {
-					this.setState({ titleMessage: null });
-				}
-			}
-			);
-		}
 	}
 
 	componentDidMount() {
@@ -211,15 +222,13 @@ class YoutubePlayer extends React.Component {
 							<PinHighLight
 								pinMessageSum={this.state.pinMessageSum}
 								pinReactSum={this.state.pinReactSum}
-								message={this.state.goodMaxMsg}
+								user={this.state.highLightUser}
+								message={this.state.highLightMessage}
 							/>
 							<PinController
 								addPin={(time) => this.addPin(time)}
 								getCurrentTime={() => Math.round(this.state.videoEl.target.getCurrentTime())}
 							/>
-						</div>
-						<div>
-
 						</div>
 					</div>
 					<div className="rightSection">
@@ -237,9 +246,9 @@ class YoutubePlayer extends React.Component {
 	}
 
 	_onReady(event) {
-		this.setState({ videoEl: event }, () => {
-			this.syncPins();
-		});
+		this.setState({ videoEl: event });
+		this.syncPins(this.state.MovieID);
+		this.syncMessage();
 	}
 }
 

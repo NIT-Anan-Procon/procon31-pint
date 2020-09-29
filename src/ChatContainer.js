@@ -2,6 +2,7 @@ import React from "react";
 
 import Message from "./Message";
 import InputContainer from "./InputContainer";
+import ReplyMessage from "./ReplyMessage";
 
 class ChatContainer extends React.Component {
 	constructor(props) {
@@ -30,18 +31,37 @@ class ChatContainer extends React.Component {
 					<div className="messageContainer">
 						<div>
 							{this.props.messages.map((message, index) => {
-								return (
-									<Message
-										key={index}
-										messageID={index}
-										groupID={message.msgGroup}
-										sendTime={message.msgTime}
-										user={message.userName}
-										message={message.msg}
-										reactNum={message.reactNum}
-										replyClicked={(ID) => this.replyClicked(ID)}
-									/>
-								)
+								if (Number(message.msgId) === Number(message.msgGroup)) {
+									return (
+										<Message
+											key={index}
+											messageID={message.msgId}
+											groupID={message.msgGroup}
+											sendTime={message.msgTime}
+											user={message.userName}
+											message={message.msg}
+											reactNum={message.reactNum}
+											replyClicked={(ID) => this.replyClicked(ID)}
+											replyMessages={this.props.replyMessages}
+										/>
+									)
+								}
+								if (Number(message.msgId) !== Number(message.msgGroup)) {
+									return (
+										<ReplyMessage
+											key={index}
+											messageID={message.msgId}
+											groupID={message.msgGroup}
+											sendTime={message.msgTime}
+											user={message.userName}
+											message={message.msg}
+											reactNum={message.reactNum}
+											replyClicked={(ID) => this.replyClicked(ID)}
+											replyMessages={this.props.replyMessages}
+										/>
+									)
+								}
+								return (0);
 							})}
 						</div>
 					</div>

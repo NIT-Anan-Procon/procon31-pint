@@ -1,6 +1,6 @@
 import React from 'react';
 
-import pinimage from './image/Pin.svg'
+import PinImage from './image/Pin.svg'
 
 class Pin extends React.Component {
 	colorOfTime(pintime) {
@@ -46,7 +46,7 @@ class Pin extends React.Component {
 					}
 				}
 			>
-				<img style={{ filter: "invert(15%) sepia(95%) saturate(6932%) hue-rotate(320deg) brightness(" + this.colorOfReaction(this.props.pinReact) + "%) contrast(" + this.colorOfTime(this.props.pinTime) + "%)" }} className="pins" src={pinimage} alt="" width={this.pinSize(this.props.pinMsgLength)} height={this.pinSize(this.props.pinMsgLength)} />
+				<img style={{ filter: "invert(15%) sepia(95%) saturate(6932%) hue-rotate(320deg) brightness(" + this.colorOfReaction(this.props.pinReact) + "%) contrast(" + this.colorOfTime(this.props.pinTime) + "%)" }} className="pins" src={PinImage} alt="" width={this.pinSize(this.props.pinMsgLength)} height={this.pinSize(this.props.pinMsgLength)} />
 			</div>
 		)
 	}
