@@ -9,18 +9,18 @@ class Message extends React.Component {
 		return (
 			<div className="messageBox" >
 				<div className="text">
-					<div className="user">
-						ユーザー: {this.props.user}
+					<div className="head">
+						<div className="user">
+							{this.props.user}
+						</div>
+						<div className="date">
+							{this.props.sendTime}
+						</div>
 					</div>
 					<div className="message">
 						{this.props.message}
 					</div>
-					<div className="time">
-						送信時間: {this.props.sendTime}
-					</div>
 					<div className="id">
-						MessageID: {this.props.messageID},
-						GroupID: {this.props.groupID}
 					</div>
 					<div className="reaction">
 						<Good

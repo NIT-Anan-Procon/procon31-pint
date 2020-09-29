@@ -18,10 +18,10 @@ class YoutubePlayer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			videoID: "M7lc1UVf-VE",
+			videoID: "WwfXzOjcA4s",
 			videoEl: null,
-			movieID: 5,
-			pinID: 75,
+			movieID: 4,
+			pinID: 78,
 			pins: [],
 			messages: [],
 			replyMessages: [],
@@ -31,18 +31,6 @@ class YoutubePlayer extends React.Component {
 			pinMessageSum: 0,
 			pinReactSum: 0
 		}
-	}
-
-	addPin(time) {
-		const params = new URLSearchParams();
-		params.append('MovieID', this.state.movieID);
-		params.append('PinTime', time);
-		axios
-			.post("http://procon31-server.ddns.net/API/PinReg.php", params)
-			.then(res => {
-				this.syncPins()
-			})
-			.catch(err => alert(err));
 	}
 
 	syncPins = () => {
@@ -57,12 +45,27 @@ class YoutubePlayer extends React.Component {
 				for (let key in res.data.PinArray) {
 					pins[key] = (res.data.PinArray[key]);
 				}
-				this.setState({ pins: pins }, () => {
-					this.pinIdJudge()
+				this.setState({
+					pins: pins
+				}, () => {
+					this.initialSetPin()
 				});
 			})
 			.catch(err => alert(err));
 		setTimeout(this.syncPins, 10000)
+	}
+
+	initialSetPin() {
+		if (this.state.pinID != null) {
+			this.setState({
+				pinMessageSum: this.state.pins[this.state.pinID].msgSum,
+				pinReactSum: this.state.pins[this.state.pinID].reactSum
+			}, () => {
+				if (this.state.pinMessageSum == 0) {
+					this.setState({ titleMessage: null });
+				}
+			});
+		}
 	}
 
 	setPinID(pinID) {
@@ -70,8 +73,20 @@ class YoutubePlayer extends React.Component {
 			pinID: pinID
 		}, () => {
 			this.syncMessage();
-			this.pinIdJudge();
+			this.initialSetPin();
 		});
+	}
+
+	addPin(time) {
+		const params = new URLSearchParams();
+		params.append('MovieID', this.state.movieID);
+		params.append('PinTime', time);
+		axios
+			.post("http://procon31-server.ddns.net/API/PinReg.php", params)
+			.then(res => {
+				this.syncPins()
+			})
+			.catch(err => alert(err));
 	}
 
 	syncMessage = () => {
@@ -119,9 +134,7 @@ class YoutubePlayer extends React.Component {
 		axios
 			.post("http://procon31-server.ddns.net/API/BestReactGet.php", params)
 			.then(res => {
-				console.log(res)
 				if (res.data.Result) {
-					console.log("true")
 					for (let key in this.state.messages) {
 						if (this.state.messages[key].msgId == res.data.msgId) {
 							this.setState({
@@ -133,20 +146,6 @@ class YoutubePlayer extends React.Component {
 				}
 			})
 			.catch(err => alert(err));
-	}
-
-	pinIdJudge() {
-		if (this.state.pinID != null) {
-			this.setState({
-				pinMessageSum: this.state.pins[this.state.pinID].msgSum,
-				pinReactSum: this.state.pins[this.state.pinID].reactSum
-			}, () => {
-				if (this.state.pinMessageSum === "0") {
-					this.setState({ titleMessage: null });
-				}
-			}
-			);
-		}
 	}
 
 	render() {
@@ -194,9 +193,6 @@ class YoutubePlayer extends React.Component {
 								addPin={(time) => this.addPin(time)}
 								getCurrentTime={() => Math.round(this.state.videoEl.target.getCurrentTime())}
 							/>
-						</div>
-						<div>
-
 						</div>
 					</div>
 					<div className="rightSection">

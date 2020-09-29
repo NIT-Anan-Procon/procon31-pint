@@ -1,27 +1,23 @@
 /* チャットのタイトル */
 
-.chatTitleBox{
+.chatTitleBox {
 	height: 60px;
-
 	background: #FE5600;
 	border-radius: 5px;
-
 	font-style: normal;
 	font-weight: bold;
 	font-size: 20px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
 	color: #FFFFFF;
 }
 
-/* チャット */
+/* チャットの箱 */
 
-.chatContainer{
+.chatContainer {
 	height: 765px;
 	margin-top: 5px;
-	
 	border: 2px solid #A9D18E;
 	border-radius: 5px;
 }
@@ -29,10 +25,9 @@
 .messageContainer {
 	height: 710px;
 	margin: 5px;
-
 	background: #F9F9F9;
 	overflow: auto;
-  }
+}
 
 .messageBox {
 	margin: 3px;
@@ -47,10 +42,37 @@
 	border-radius: 5px;
 }
 
+/* チャットカード */
+
+.user {
+	background-color: #a9d18ecc;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.replyUser {
+	background-color: #F08D5CCC;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.head{
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+
+.date {
+	font-size: 14px;
+	color: #5c5b5b;
+	margin-left: auto;
+	margin-right: 0px;
+}
+
 .text {
 	font-style: normal;
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 15px;
 	color: #0f0f0f;
 	padding: 5px;
 }
@@ -67,9 +89,13 @@
 	width: 100px;
 }
 
+.goodCount {
+	margin-left: 5px;
+}
+
 .goodIcon {
-	width: 32px;
-	height: 32px;
+	width: 28px;
+	height: 28px;
 	cursor: pointer;
 }
 
@@ -86,15 +112,13 @@
 .inputContainer {
 	margin: 0px 5px 5px 5px;
 }
-  
+
 .inputField {
 	width: 285px;
 	height: 40px;
-  
 	border: 2px solid #A9D18E;
 	box-sizing: border-box;
 	border-radius: 3px;
-
 	float: left;
 }
 
@@ -103,13 +127,10 @@
 	height: 40px;
 	background: #FE5600;
 	border-radius: 5px;
-
 	font-style: normal;
 	font-weight: bold;
 	font-size: 20px;
 	text-align: center;
 	color: #FFFFFF;
-
 	float: right;
 }
-
