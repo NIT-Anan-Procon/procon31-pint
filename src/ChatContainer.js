@@ -31,11 +31,11 @@ class ChatContainer extends React.Component {
 					<div className="messageContainer">
 						<div>
 							{this.props.messages.map((message, index) => {
-								if (Number(index) === Number(message.msgGroup)) {
+								if (Number(message.msgId) === Number(message.msgGroup)) {
 									return (
 										<Message
 											key={index}
-											messageID={index}
+											messageID={message.msgId}
 											groupID={message.msgGroup}
 											sendTime={message.msgTime}
 											user={message.userName}
@@ -46,11 +46,11 @@ class ChatContainer extends React.Component {
 										/>
 									)
 								}
-								if (Number(index) !== Number(message.msgGroup)) {
+								if (Number(message.msgId) !== Number(message.msgGroup)) {
 									return (
 										<ReplyMessage
 											key={index}
-											messageID={index}
+											messageID={message.msgId}
 											groupID={message.msgGroup}
 											sendTime={message.msgTime}
 											user={message.userName}
