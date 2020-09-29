@@ -18,9 +18,6 @@ class ReplyMessage extends React.Component {
 					<div className="message">
 						{this.props.message}
 					</div>
-					<div className="date">
-						{this.props.sendTime}
-					</div>
 					<div className="reaction">
 						<Good
 							messageID={this.props.messageID}
