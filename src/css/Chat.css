@@ -36,13 +36,15 @@
 
 .messageBox {
 	margin: 3px;
-	background-color: #A9D18E;
+	background-color: #A9D18E6E;
+	border-radius: 5px;
 }
 
 .replyMessageBox {
 	margin: 3px;
 	margin-left: 30px;
-	background-color: #f08d5c;
+	background-color: #F08D5C6E;
+	border-radius: 5px;
 }
 
 .text {
@@ -50,6 +52,7 @@
 	font-weight: bold;
 	font-size: 16px;
 	color: #0f0f0f;
+	padding: 5px;
 }
 
 .reaction {

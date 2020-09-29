@@ -8,7 +8,7 @@ class PinHighLight extends React.Component {
 					<div className="pinHighLightTitle">ピンのハイライト</div>
 					<div className="pinHighLightContents">
 						<div className="pinHighLightUser">
-							User
+							{this.props.user}
 						</div>
 						<div className="pinHighLightMessage">
 							{this.props.message}

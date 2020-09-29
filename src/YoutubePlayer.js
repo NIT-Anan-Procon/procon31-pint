@@ -26,6 +26,8 @@ class YoutubePlayer extends React.Component {
 			messages: [],
 			replyMessages: [],
 			titleMessage: null,
+			highLightMessage: null,
+			highLightUser: null,
 			pinMessageSum: 0,
 			pinReactSum: 0
 		}
@@ -77,11 +79,9 @@ class YoutubePlayer extends React.Component {
 		clearTimeout(this.syncMessage);
 		const params = new URLSearchParams();
 		params.append('PinID', this.state.pinID);
-		this.setState({ messages: [] });
 		axios
 			.post("http://procon31-server.ddns.net/API/ChatGet.php", params)
 			.then(res => {
-				console.log(res)
 				for (let key in res.data.MessageArray) {
 					messages[key] = res.data.MessageArray[key]
 				}
@@ -90,12 +90,17 @@ class YoutubePlayer extends React.Component {
 					if (a.msgGroup > b.msgGroup) return 1;
 					return 0;
 				});
-				this.setState({
-					messages: messages
-				}, () => {
-					console.log(this.state.messages)
-					this.setMaxMassage();
-				});
+				if (Number(this.state.messages.length) != Number(messages.length)) {
+					this.setState({
+						messages: []
+					}, () => {
+						this.setState({
+							messages: messages
+						}, () => {
+							this.setHighLightMassage();
+						})
+					});
+				}
 				for (let key in this.state.messages) {
 					if (this.state.messages[key] !== null) {
 						this.setState({ titleMessage: this.state.messages[key].msg });
@@ -107,17 +112,24 @@ class YoutubePlayer extends React.Component {
 		setTimeout(this.syncMessage, 10000)
 	}
 
-	setMaxMassage = () => {
-		let goodMaxMsg = [];
+	setHighLightMassage = () => {
 		const params = new URLSearchParams();
 		params.append('PinID', this.state.pinID);
 		this.setState({ goodMaxMsg: [] });
 		axios
 			.post("http://procon31-server.ddns.net/API/BestReactGet.php", params)
 			.then(res => {
-				if (res.data.Result === "true") {
-					goodMaxMsg = this.state.messages[res.data.msgId].msg
-					this.setState({ goodMaxMsg: goodMaxMsg })
+				console.log(res)
+				if (res.data.Result) {
+					console.log("true")
+					for (let key in this.state.messages) {
+						if (this.state.messages[key].msgId == res.data.msgId) {
+							this.setState({
+								highLightMessage: this.state.messages[key].msg,
+								highLightUser: this.state.messages[key].userName
+							});
+						}
+					}
 				}
 			})
 			.catch(err => alert(err));
@@ -175,7 +187,8 @@ class YoutubePlayer extends React.Component {
 							<PinHighLight
 								pinMessageSum={this.state.pinMessageSum}
 								pinReactSum={this.state.pinReactSum}
-								message={this.state.goodMaxMsg}
+								user={this.state.highLightUser}
+								message={this.state.highLightMessage}
 							/>
 							<PinController
 								addPin={(time) => this.addPin(time)}
@@ -201,7 +214,6 @@ class YoutubePlayer extends React.Component {
 	}
 
 	_onReady(event) {
-		// this.setVideoAndMovieID();
 		this.setState({ videoEl: event });
 		this.syncPins(this.state.MovieID);
 		this.syncMessage();
