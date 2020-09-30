@@ -24,9 +24,10 @@ class Message extends React.Component {
 						<Good
 							messageID={this.props.messageID}
 							reactNum={this.props.reactNum}
+							syncPins={this.props.syncPins}
 						/>
 						<div className="reply" onClick={() => this.props.replyClicked(this.props.messageID)}>
-							<img src={ReplyImage} alt="リプライロゴ" height="20px" style={{marginRight: "5px"}}/>返信
+							<img src={ReplyImage} alt="リプライロゴ" height="20px" style={{ marginRight: "5px" }} />返信
 						</div>
 					</div>
 				</div>

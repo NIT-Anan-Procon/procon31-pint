@@ -22,6 +22,7 @@ class ReplyMessage extends React.Component {
 						<Good
 							messageID={this.props.messageID}
 							reactNum={this.props.reactNum}
+							syncPins={this.props.syncPins}
 						/>
 					</div>
 				</div>

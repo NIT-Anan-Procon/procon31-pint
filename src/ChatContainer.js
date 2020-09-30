@@ -43,6 +43,7 @@ class ChatContainer extends React.Component {
 											reactNum={message.reactNum}
 											replyClicked={(ID) => this.replyClicked(ID)}
 											replyMessages={this.props.replyMessages}
+											syncPins={this.props.syncPins}
 										/>
 									)
 								}
@@ -58,6 +59,7 @@ class ChatContainer extends React.Component {
 											reactNum={message.reactNum}
 											replyClicked={(ID) => this.replyClicked(ID)}
 											replyMessages={this.props.replyMessages}
+											syncPins={this.props.syncPins}
 										/>
 									)
 								}

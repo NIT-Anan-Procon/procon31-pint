@@ -38,7 +38,6 @@ class YoutubePlayer extends React.Component {
 		clearTimeout(this.syncPins);
 		const params = new URLSearchParams();
 		params.append('MovieID', this.state.movieID);
-		this.setState({ pins: [] });
 		axios
 			.post("http://procon31-server.ddns.net/API/PinGet.php", params)
 			.then(res => {
@@ -46,9 +45,13 @@ class YoutubePlayer extends React.Component {
 					pins[key] = (res.data.PinArray[key]);
 				}
 				this.setState({
-					pins: pins
+					pins: [],
 				}, () => {
-					this.initialSetPin()
+					this.setState({
+						pins: pins
+					}, () => {
+						this.initialSetPin()
+					});
 				});
 			})
 			.catch(err => alert(err));
@@ -56,6 +59,7 @@ class YoutubePlayer extends React.Component {
 	}
 
 	initialSetPin() {
+		let initialPinID
 		if (this.state.pinID != null) {
 			this.setState({
 				pinMessageSum: this.state.pins[this.state.pinID].msgSum,
@@ -64,6 +68,22 @@ class YoutubePlayer extends React.Component {
 				if (this.state.pinMessageSum == 0) {
 					this.setState({ titleMessage: null });
 				}
+			});
+		}
+		if (this.state.pinID == null) {
+			for (let key in this.state.pins) {
+				initialPinID = key;
+				break;
+			}
+			this.setState({
+				pinID: initialPinID,
+				pinMessageSum: this.state.pins[initialPinID].msgSum,
+				pinReactSum: this.state.pins[initialPinID].reactSum
+			}, () => {
+				if (this.state.pinMessageSum == 0) {
+					this.setState({ titleMessage: null });
+				}
+				this.syncMessage();
 			});
 		}
 	}
@@ -189,7 +209,7 @@ class YoutubePlayer extends React.Component {
 				<div className="all">
 					<div className="leftSection">
 						<YouTube videoId={this.state.videoID} opts={opts} onReady={(event) => this._onReady(event)} />
-						<PinBox 
+						<PinBox
 							pins={this.state.pins}
 							videoEl={this.state.videoEl}
 							setPinID={(ID) => this.setPinID(ID)}
@@ -214,6 +234,7 @@ class YoutubePlayer extends React.Component {
 							replyMessages={this.state.replyMessages}
 							titleMessage={this.state.titleMessage}
 							syncMessage={this.syncMessage}
+							syncPins={this.syncPins}
 						/>
 					</div>
 				</div>
@@ -222,10 +243,8 @@ class YoutubePlayer extends React.Component {
 	}
 
 	_onReady(event) {
-		console.log(event.target.getDuration())
 		this.setState({ videoEl: event });
 		this.syncPins(this.state.MovieID);
-		this.syncMessage();
 	}
 }
 
