@@ -1,8 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import HeartDefault from './image/HeartDefault.png'
-import HeartClicked from './image/HeartClicked.png'
+import Heart from './Heart';
 
 class Good extends React.Component {
 	constructor(props) {
@@ -36,18 +35,14 @@ class Good extends React.Component {
 	};
 
 	goodJudge() {
-		if (this.state.count === 0) {
-			return HeartDefault
-		}
-		if (this.state.count > 0) {
-			return HeartClicked
-		}
+		// return (this.state.count === 0) ? HeartDefault : HeartClicked;
 	}
 
 	render() {
 		return (
 			<div className="good">
-				<img src={this.goodJudge()} alt="いいね" id={this.state.messageID} className="goodIcon" onClick={this.goodClick} />
+				{/* <img src={this.goodJudge()} alt="いいね" id={this.state.messageID} className="goodIcon" onClick={this.goodClick} /> */}
+				<Heart />
 				<div className="goodCount">
 					{this.state.count}
 				</div>
