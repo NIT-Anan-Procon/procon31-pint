@@ -61,7 +61,7 @@ class YoutubePlayer extends React.Component {
 	initialSetPin() {
 		let initialPinID
 		if (this.state.pinID != null) {
-			const psum = this.state.pins[this.state.pinID].msgSum;
+			const psum = Number(this.state.pins[this.state.pinID].msgSum);
 			this.setState({
 				pinMessageSum: psum,
 				pinReactSum: this.state.pins[this.state.pinID].reactSum,
@@ -78,9 +78,6 @@ class YoutubePlayer extends React.Component {
 				pinMessageSum: this.state.pins[initialPinID].msgSum,
 				pinReactSum: this.state.pins[initialPinID].reactSum
 			}, () => {
-				if (this.state.pinMessageSum == 0) {
-					this.setState({ titleMessage: null });
-				}
 				this.syncMessage();
 			});
 		}
@@ -102,6 +99,9 @@ class YoutubePlayer extends React.Component {
 		axios
 			.post("http://procon31-server.ddns.net/API/PinReg.php", params)
 			.then(res => {
+				this.setState({
+					pinID: res.data.PinID
+				})
 				this.syncPins()
 			})
 			.catch(err => alert(err));
@@ -123,6 +123,7 @@ class YoutubePlayer extends React.Component {
 					if (a.msgGroup > b.msgGroup) return 1;
 					return 0;
 				});
+				console.log(Number(this.state.messages.length) + ", " + Number(messages.length))
 				if (Number(this.state.messages.length) != Number(messages.length)) {
 					this.setState({
 						messages: []
@@ -159,8 +160,13 @@ class YoutubePlayer extends React.Component {
 								highLightMessage: this.state.messages[key].msg,
 								highLightUser: this.state.messages[key].userName
 							});
-						}
+						} 
 					}
+				}else {
+					this.setState({
+						highLightMessage: null,
+						highLightUser: null
+					})
 				}
 			})
 			.catch(err => alert(err));
