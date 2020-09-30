@@ -1,8 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-import Heart from './Heart';
-
 class Good extends React.Component {
 	constructor(props) {
 		super(props);
@@ -38,9 +36,27 @@ class Good extends React.Component {
 	};
 
 	goodJudge() {
-		// return (this.state.count === 0) ? HeartDefault : HeartClicked;
+		if (this.state.count === 0) {
+			this.setState({
+				fill: "#FFFFFF",
+				stroke: "#000000",
+				strokeWidth: 2
+			});
+		}
+		if (this.state.count > 0) {
+			this.setState({
+				liked: true,
+				fill: "#EE64C0",
+				stroke: "#00FFFFFF",
+				strokeWidth: 0
+			});
+		}
 	}
 
+	componentDidMount() {
+		this.goodJudge();
+	}
+	
 	render() {
 		return (
 			<div className="good" onClick={this.goodClick}>
