@@ -2,7 +2,7 @@ import React from 'react';
 import YouTube from 'react-youtube';
 import axios from 'axios';
 
-import Pin from "./Pin"
+import PinBox from "./PinBox"
 import PinController from './PinController';
 import PinHighLight from "./PinHighLight";
 import ChatContainer from "./ChatContainer";
@@ -34,6 +34,7 @@ class YoutubePlayer extends React.Component {
 	}
 
 	syncPins = () => {
+		console.log(this.state.videoEl.target.getDuration())
 		let pins = [];
 		clearTimeout(this.syncPins);
 		const params = new URLSearchParams();
@@ -199,25 +200,11 @@ class YoutubePlayer extends React.Component {
 				<div className="all">
 					<div className="leftSection">
 						<YouTube videoId={this.state.videoID} opts={opts} onReady={(event) => this._onReady(event)} />
-						<div className="pinBox">
-							<div className="pin">
-								{this.state.pins.map((pin, index) => {
-									return (
-										<Pin
-											pinReact={this.state.pins[index].reactSum}
-											pinMsgLength={this.state.pins[index].msgSum}
-											pinTime={pin.pinTime}
-											pinType={pin.pinType}
-											pinID={index}
-											setPinID={(ID) => this.setPinID(ID)}
-											getVideo={() => this.state.videoEl}
-											duration={() => this.state.videoEl.target.getDuration()}
-										/>
-									)
-								})}
-							</div>
-							<hr className="seekBar" />
-						</div>
+						<PinBox 
+							pins={this.state.pins}
+							videoEl={this.state.videoEl}
+							setPinID={(ID) => this.setPinID(ID)}
+						/>
 						<div className="pinHighLightAndButton">
 							<PinHighLight
 								pinMessageSum={this.state.pinMessageSum}
