@@ -34,7 +34,7 @@ class YoutubePlayer extends React.Component {
 	}
 
 	syncPins = () => {
-		let pins = [];
+		const pins = [];
 		clearTimeout(this.syncPins);
 		const params = new URLSearchParams();
 		params.append('MovieID', this.state.movieID);
@@ -61,13 +61,11 @@ class YoutubePlayer extends React.Component {
 	initialSetPin() {
 		let initialPinID
 		if (this.state.pinID != null) {
+			const psum = this.state.pins[this.state.pinID].msgSum;
 			this.setState({
-				pinMessageSum: this.state.pins[this.state.pinID].msgSum,
-				pinReactSum: this.state.pins[this.state.pinID].reactSum
-			}, () => {
-				if (this.state.pinMessageSum == 0) {
-					this.setState({ titleMessage: null });
-				}
+				pinMessageSum: psum,
+				pinReactSum: this.state.pins[this.state.pinID].reactSum,
+				titleMessage: (psum === 0) ? null : this.state.titleMessage
 			});
 		}
 		if (this.state.pinID == null) {
