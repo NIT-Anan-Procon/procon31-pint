@@ -34,7 +34,6 @@ class YoutubePlayer extends React.Component {
 	}
 
 	syncPins = () => {
-		console.log(this.state.videoEl.target.getDuration())
 		let pins = [];
 		clearTimeout(this.syncPins);
 		const params = new URLSearchParams();
@@ -149,7 +148,8 @@ class YoutubePlayer extends React.Component {
 			.catch(err => alert(err));
 	}
 
-	componentDidMount() {
+	componentWillMount() {
+		console.log("url")
 		let urlParamStr = window.location.search
 
 		if (urlParamStr) {
@@ -168,20 +168,9 @@ class YoutubePlayer extends React.Component {
 				}
 			})
 			this.setState({
-				movieID: params.id
-			}, () => {
-				const params = new URLSearchParams();
-				params.append('MovieID', this.state.movieID);
-				axios
-					.post("http://procon31-server.ddns.net/API/MovieGet.php", params)
-					.then(res => {
-						this.setState({
-							videoID: res.data.PinArray.videoID
-						});
-					})
-					.catch(err => alert(err))
-			}
-			);
+				movieID: params.id,
+				videoID: params.videoID
+			});
 		}
 	}
 
@@ -233,6 +222,7 @@ class YoutubePlayer extends React.Component {
 	}
 
 	_onReady(event) {
+		console.log(event.target.getDuration())
 		this.setState({ videoEl: event });
 		this.syncPins(this.state.MovieID);
 		this.syncMessage();
