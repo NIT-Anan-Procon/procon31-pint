@@ -2,7 +2,7 @@ import React from "react";
 
 import Good from "./Good";
 
-import ReplyImage from './image/reply.svg'
+import ReplyImage from './image/Reply.svg'
 
 class Message extends React.Component {
 	render() {
