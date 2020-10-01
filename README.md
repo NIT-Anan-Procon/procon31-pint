@@ -1,30 +1,39 @@
-# procon31_pint
+# procon31 Pint
 
-## install
+## 開発環境
 
-`$ npm install`
+* Ubuntu Server 20.04
 
-## run
+* Node.js 12.84.4
+
+	* npm 6.14.6
+
+	* yarn 1.22.5
+	
+	* React 16.13.1
+	
+	* axios 0.19.2
+	
+	* react-youtube 7.11.3
+	
+## 実行環境
+
+* Google Chrome 最新版
+
+## このリポジトリについて
+
+* Reactのプロジェクトです。
+
+## 実行するには
+
+### `npm install`
+
+依存ファイル、コンポーネントを同期・置き換えます。
 
 ### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+開発モードで動きます。
 
 ### `yarn build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Reactのプロジェクトファイルを出力します。
