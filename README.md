@@ -22,47 +22,47 @@
 
 ## 実行方法
 
-### `npm install`
+* `npm install`
 
-依存ファイル、コンポーネントの同期・置き換え。
+	依存ファイル、コンポーネントの同期・置き換え
 
-### `yarn start`
+* `yarn start`
 
-開発モードで動く。
+	開発モードで動く
 
-### `yarn build`
+* `yarn build`
 
-Reactのプロジェクトファイルを出力する。
+	Reactのプロジェクトファイルを出力する
 
 ## ファイル構成
 
-* public
+* `public`
 
-	Reactがコンパイルされたときに呼び出される。
+	Reactがコンパイルされたときに呼び出される
 
-* src
+* `src`
 
 	JavaScriptのソースセット
 
-	* css
+	* `css`
 
 		描画時に呼び出されるCSSフォルダ
 
-	* image
+	* `image`
 
 		写真やロゴを置くフォルダ
 
 * `index.js`
 
-	indexとして最初に読み込まれ、YouTubePlayerコンポーネントの呼び出し。
+	indexとして最初に読み込まれ、YouTubePlayerコンポーネントの呼び出し
 
 * `YouTubePlayer.js`
 
-	YouTube動画の読み込み、全体のコンポーネントの描画。
+	YouTube動画の読み込み、全体のコンポーネントの描画
 
 * `PinBox.js`
 
-	ピンを表示する箱の描画。Pinコンポーネントを呼び出し。
+	ピンを表示する箱の描画。Pinコンポーネントを呼び出し
 
 	* `Pin.js`
 
