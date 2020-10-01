@@ -33,6 +33,7 @@ class YoutubePlayer extends React.Component {
 		}
 	}
 
+	// サーバーとピンの同期
 	syncPins = () => {
 		const pins = [];
 		clearTimeout(this.syncPins);
@@ -58,6 +59,7 @@ class YoutubePlayer extends React.Component {
 		setTimeout(this.syncPins, 10000)
 	}
 
+	// ピンがセットされたときに動作する
 	initialSetPin() {
 		let initialPinID
 		if (this.state.pinID != null) {
@@ -83,6 +85,7 @@ class YoutubePlayer extends React.Component {
 		}
 	}
 
+	// PinがクリックされたときにStateにセットする
 	setPinID(pinID) {
 		this.setState({
 			pinID: pinID
@@ -92,6 +95,7 @@ class YoutubePlayer extends React.Component {
 		});
 	}
 
+	// Pinが立ったときの動作
 	addPin(time) {
 		const params = new URLSearchParams();
 		params.append('MovieID', this.state.movieID);
@@ -107,6 +111,7 @@ class YoutubePlayer extends React.Component {
 			.catch(err => alert(err));
 	}
 
+	// サーバーとメッセージの同期
 	syncMessage = () => {
 		let messages = [];
 		clearTimeout(this.syncMessage);
@@ -146,6 +151,7 @@ class YoutubePlayer extends React.Component {
 		setTimeout(this.syncMessage, 10000)
 	}
 
+	// ピンのハイライトの取得とStateにセット
 	setHighLightMassage = () => {
 		const params = new URLSearchParams();
 		params.append('PinID', this.state.pinID);
@@ -160,9 +166,9 @@ class YoutubePlayer extends React.Component {
 								highLightMessage: this.state.messages[key].msg,
 								highLightUser: this.state.messages[key].userName
 							});
-						} 
+						}
 					}
-				}else {
+				} else {
 					this.setState({
 						highLightMessage: null,
 						highLightUser: null
@@ -172,20 +178,18 @@ class YoutubePlayer extends React.Component {
 			.catch(err => alert(err));
 	}
 
+	// URLパラメータの取得
 	componentWillMount() {
 		console.log("url")
 		let urlParamStr = window.location.search
 
 		if (urlParamStr) {
-			//?を除去
 			urlParamStr = urlParamStr.substring(1)
 
 			let params = {}
 
-			//urlパラメータをオブジェクトにまとめる
 			urlParamStr.split('&').forEach(param => {
 				const temp = param.split('=')
-				//pramsオブジェクトにパラメータを追加
 				params = {
 					...params,
 					[temp[0]]: temp[1]

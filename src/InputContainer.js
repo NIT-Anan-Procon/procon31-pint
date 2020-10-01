@@ -11,10 +11,12 @@ class InputContainer extends React.Component {
 		this.sendMessage = this.sendMessage.bind(this);
 	}
 
+	// inputにコメントが入力されたときのイベントハンドラ
 	handleChange(event) {
 		this.setState({ value: event.target.value });
 	}
 
+	// inputのPlaceholder設定
 	setPlaceHolder() {
 		if (this.props.replyID == null) {
 			return "全体に送信";
@@ -23,6 +25,7 @@ class InputContainer extends React.Component {
 		}
 	}
 
+	// サーバーにメッセージの送信
 	sendMessage() {
 		const params = new URLSearchParams();
 		params.append('PinID', this.props.pinID);

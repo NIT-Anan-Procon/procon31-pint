@@ -13,10 +13,12 @@ class ChatContainer extends React.Component {
 		};
 	}
 
+	// 返信ボタンが押されたときの動作
 	replyClicked(messageID) {
 		this.setState({ replyID: messageID });
 	}
 
+	// 返信が終わったときの動作
 	replyFinished = () => {
 		this.setState({ replyID: null });
 	}

@@ -14,7 +14,7 @@ class PinHighLight extends React.Component {
 							{this.props.message}
 						</div>
 					</div>
-					
+
 				</div>
 				<div className="pinInfomation">
 					<div className="pinHighLightTitle">ピンの情報</div>

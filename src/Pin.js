@@ -3,26 +3,31 @@ import React from 'react';
 import PinImage from './image/Pin.svg'
 
 class Pin extends React.Component {
+	// ピンの初期カラーの設定
 	colorOfTime(pintime) {
 		if (pintime === "0") return 1;
 		else return 112;
 	}
 
+	// いいねが押されたときの色の変化の設定
 	colorOfReaction(reactsum) {
 		const ret = 10000 - Math.log(reactsum + 1) * 2000
 		if (ret >= 100) return ret;
 		else return 100;
 	}
 
+	// ピンがクリックされたときにYouTubeをシークさせる
 	seekPinTime(time) {
 		this.props.getVideo().target.seekTo(time);
 	}
 
+	// ピンの位置の指定
 	marginOfTime(currentTime, duration) {
 		const iframeSize = 936;
 		return Math.round(currentTime * iframeSize / duration);
 	}
 
+	// ピンのサイズの指定
 	pinSize(msgleng) {
 		if (msgleng <= 5) return 30;
 		else if (msgleng <= 10) return 40;

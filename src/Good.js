@@ -13,6 +13,7 @@ class Good extends React.Component {
 		}
 	}
 
+	// いいねをサーバーへ送信
 	addGood = () => {
 		const params = new URLSearchParams();
 		params.append('messageID', this.props.messageID);
@@ -22,6 +23,7 @@ class Good extends React.Component {
 			.catch(err => alert(err));
 	}
 
+	// いいねボタンがクリックされたときの動作
 	goodClick = () => {
 		this.setState({
 			liked: true,
@@ -33,6 +35,7 @@ class Good extends React.Component {
 		this.addGood();
 	};
 
+	// 読み込まれたときのハートの色の指定
 	goodJudge() {
 		if (this.state.count === 0) {
 			this.setState({
@@ -51,10 +54,11 @@ class Good extends React.Component {
 		}
 	}
 
+	// renderが始まる直前の動作
 	componentDidMount() {
 		this.goodJudge();
 	}
-	
+
 	render() {
 		return (
 			<div className="good" onClick={this.goodClick}>
