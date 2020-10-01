@@ -7,7 +7,7 @@ import PinController from './PinController';
 import PinHighLight from "./PinHighLight";
 import ChatContainer from "./ChatContainer";
 
-import PintLogo from "./image/PintLogo.png";
+import PintLogo from "./image/PintLogo.svg";
 
 import './css/reset.css';
 import './css/YoutubePlayer.css';
